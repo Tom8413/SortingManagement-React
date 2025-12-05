@@ -12,17 +12,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(cors({
-    origin: ['http://localhost:8080'],
+    origin: ['http://localhost:8000'],
     credentials: true,
 }));
-
+//app.use(cors());
 dotenv.config();
 
 const dbURI = process.env.HIDE_dbURI;
 
 
 mongoose.connect(dbURI)
-    .then((result) => app.listen(3000))
+    .then((result) => app.listen(8000))
     .catch((err) => console.log(err));
 
 app.use(express.urlencoded({extended:true}));
