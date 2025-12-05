@@ -1,10 +1,11 @@
 import './App.css';
+import ShowUser from './getUser/ShowUser';
 
 function App() {
   return (
     <div className="App">
-      <p> coś tam napewno jest</p>
-    </div>
+      <ShowUser />
+      </div>
   );
 }
 
