@@ -4,19 +4,19 @@ const Schema = mongoose.Schema;
 const employeesSchema = new Schema({
     first_name: {
         type: String,
-        Required: 'Please enter'
+        Required: true
     },
     last_name: {
         type: String,
-        Required: 'Please enter'
+        Required: true
     },
     ID_number: {
         type: Number,
-        Required: 'Please enter'
+        Required: true
     },
     Department: {
         type: String,
-        Required: 'Please enter'
+        Required: true
     }
 }, {timestamps: true});
 
