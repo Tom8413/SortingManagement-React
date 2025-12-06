@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../getUser/user.css";
+import { Link } from "react-router-dom";
 
 const ShowUser = () => {
 
@@ -20,19 +21,19 @@ const ShowUser = () => {
 
 
     return (
-        <div className="horizontal">
+        <><div className="horizontal">
             {users.map((user, index) => {
                 return (
-                <div className="block" key={index}>
-                    <div>First name : {user.first_name}</div>
-                    <div>Last name : {user.last_name}</div>
-                    <div>ID number : {user.ID_number}</div>
-                    <div>Department :</div>
-                    <button>Delete</button>
-                </div>
+                    <div className="block" key={index}>
+                        <div>First name: {user.first_name}</div>
+                        <div>Last name: {user.last_name}</div>
+                        <div>ID number: {user.ID_number}</div>
+                        <div>Department :</div>
+                        <button>Delete</button>
+                    </div>
                 );
             })}
-        </div>
+        </div><Link to="/addUser">Add User</Link></>
         
     )
 }
