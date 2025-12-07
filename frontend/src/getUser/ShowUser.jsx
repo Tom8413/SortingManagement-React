@@ -33,7 +33,12 @@ const ShowUser = () => {
                     </div>
                 );
             })}
-        </div><Link to="/addUser">Add User</Link></>
+        </div>
+        <Link to="/addUser">
+            <button> Add User</button>
+        </Link>
+        </>
+        
         
     )
 }
