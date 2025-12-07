@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../getUser/user.css";
+import "../getUser/showUser.css";
 import { Link } from "react-router-dom";
 
 const ShowUser = () => {
