@@ -19,6 +19,15 @@ const ShowUser = () => {
         fetchData()
     }, []);
 
+    const deleteUser = async(userId) => {
+        await axios.delete(`http://localhost:8000/delete-employee/${userId}`)
+        .then((response) => {
+            setUsers((prevUser) =>prevUser.filter((user) => user._id !== userId));
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
 
     return (
         <><div className="horizontal">
@@ -29,7 +38,9 @@ const ShowUser = () => {
                         <div>Last name: {user.last_name}</div>
                         <div>ID number: {user.ID_number}</div>
                         <div>Department :</div>
-                        <button>Delete</button>
+                        <button
+                        onClick={() => deleteUser(user._id)}
+                        >Delete</button>
                     </div>
                 );
             })}
