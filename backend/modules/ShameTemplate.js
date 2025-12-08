@@ -14,10 +14,10 @@ const employeesSchema = new Schema({
         type: Number,
         Required: true
     },
-    Department: {
-        type: String,
-        Required: true
-    }
+    //Department: {
+    //    type: String,
+    //    Required: true
+    //}
 }, {timestamps: true});
 
 const Employees = mongoose.model('Employee', employeesSchema);
