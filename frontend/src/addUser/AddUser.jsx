@@ -1,27 +1,40 @@
 import React, {useState} from 'react';
 import '../addUser/addUser.css';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import toast from 'react-hot-toast'
 
 
 export const AddUser = () => {
 
   const [first_name, setFirst_name] = useState('');
+  const [last_name, setLast_name] = useState('');
+  //const [Depertment, setDepertment] = useState('');
+  const [ID_number, steID_number] = useState('');
+  const navigate = useNavigate();
+  
   
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const data = {
-      name: first_name,
+      first_name: first_name,
+      last_name: last_name,
+      //department: Depertment,
+      ID_number: ID_number,
     };
 
-    try {
-      const response = await axios.post("http://localhost:3000/create-employee", data);
-      console.log(response.data);
-    } catch (error) {
+    
+      await axios.post("http://localhost:8000/create-employee", data)
+      .then((response) => {
+        console.log(response.data);
+        toast.success("User" + " " + response.data.first_name + " " + "created successful!", {position: "top-right"});
+        navigate("/");
+      })
+      .catch ((error) => {
       console.log(error);
-    }
+    })
   };
 
   return (
@@ -43,8 +56,10 @@ export const AddUser = () => {
       <input type="text"
              id='last_name'
              name='lastName'
+             value={last_name}
              maxLength="15"  
              placeholder='Enter Last Name'
+             onChange={(event) => setLast_name(event.target.value)}
              />
 
       <label htmlFor='ID_number'>ID_number:</label>
@@ -53,7 +68,9 @@ export const AddUser = () => {
              maxLength="8" 
              id='ID_number'
              name='IDNumber'
+             value={ID_number}
              placeholder='ID_number'
+             onChange={(event) => steID_number(event.target.value)}
              />
 
       <label htmlFor='Department'>Department: </label>
