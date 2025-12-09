@@ -42,7 +42,7 @@ const ShowUser = () => {
                         <div>First name: {user.first_name}</div>
                         <div>Last name: {user.last_name}</div>
                         <div>ID number: {user.ID_number}</div>
-                        <div>Department :</div>
+                        <div>Department: {user.Department}</div>
                         <button
                         onClick={() => deleteUser(user._id)}
                         >Delete</button>
