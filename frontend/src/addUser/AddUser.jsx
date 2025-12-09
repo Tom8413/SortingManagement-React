@@ -10,8 +10,8 @@ export const AddUser = () => {
 
   const [first_name, setFirst_name] = useState('');
   const [last_name, setLast_name] = useState('');
-  const [Department, setDepartment] = useState('NCP');
   const [ID_number, setID_number] = useState('');
+  const [Department, setDepartment] = useState('NCP');
   const navigate = useNavigate();
   
   
@@ -21,8 +21,8 @@ export const AddUser = () => {
     const data = {
       first_name: first_name,
       last_name: last_name,
-      Department: Department,
       ID_number: ID_number,
+      Department: Department,
     };
 
     
@@ -75,8 +75,7 @@ export const AddUser = () => {
 
       <label htmlFor='Department'>Department: </label>
       <select 
-            id='Department'
-            name='Department'
+  
             value={Department}
             onChange={(event) => setDepartment(event.target.value)}>
         <option value="NCP">NCP</option>
