@@ -30,7 +30,7 @@ const delete_employee = (req, res) => {
     const id = req.params.id;
     Employees.findByIdAndDelete(id)
     .then(result => {
-        res.status(200);
+        res.status(200).send(result)
         console.log(result);
     })
     .catch(err => {
