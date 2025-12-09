@@ -10,8 +10,8 @@ export const AddUser = () => {
 
   const [first_name, setFirst_name] = useState('');
   const [last_name, setLast_name] = useState('');
-  //const [Depertment, setDepertment] = useState('');
-  const [ID_number, steID_number] = useState('');
+  const [Department, setDepartment] = useState('NCP');
+  const [ID_number, setID_number] = useState('');
   const navigate = useNavigate();
   
   
@@ -21,7 +21,7 @@ export const AddUser = () => {
     const data = {
       first_name: first_name,
       last_name: last_name,
-      //department: Depertment,
+      Department: Department,
       ID_number: ID_number,
     };
 
@@ -29,7 +29,7 @@ export const AddUser = () => {
       await axios.post("http://localhost:8000/create-employee", data)
       .then((response) => {
         console.log(response.data);
-        toast.success("User" + " " + response.data.first_name + " " + "created successful!", {position: "top-right"});
+        toast.success("User " + response.data.first_name + " created successful!", {position: "top-right"});
         navigate("/");
       })
       .catch ((error) => {
@@ -70,17 +70,20 @@ export const AddUser = () => {
              name='IDNumber'
              value={ID_number}
              placeholder='ID_number'
-             onChange={(event) => steID_number(event.target.value)}
+             onChange={(event) => setID_number(event.target.value)}
              />
 
       <label htmlFor='Department'>Department: </label>
-      <select >
+      <select 
+            id='Department'
+            name='Department'
+            value={Department}
+            onChange={(event) => setDepartment(event.target.value)}>
         <option value="NCP">NCP</option>
         <option value="NCC">NCC</option>
         <option value="STM">STM</option>
         <option value="Kids">Kids</option>
       </select>
-    
       <button type="submit">      
               Submit
       </button>
