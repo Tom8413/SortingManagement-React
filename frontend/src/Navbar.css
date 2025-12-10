@@ -1,0 +1,14 @@
+.navlink-left {
+    display: flex;
+    position: right;
+    background-color: rgb(194, 106, 106);
+    color: #fff;
+  }
+  
+  .navbar-left .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+  }
+  
