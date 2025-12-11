@@ -5,7 +5,7 @@ const Employees = require('../modules/ShameTemplate');
 const employee_details = (req, res) => {
     Employees.find()
         .then((result) => {
-            res.status(200).json(result);
+            res.status(200).send(result)
         })
         .catch((error) => {
             res.status(500).json(error)
