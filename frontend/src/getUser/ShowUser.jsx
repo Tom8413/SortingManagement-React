@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import "../getUser/showUser.css";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import Navbar from "../Navbar";
 
-const ShowUser = () => {
+const ShowUser = ({users, setUsers}) => {
 
-    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,7 +19,7 @@ const ShowUser = () => {
             }
         };
         fetchData()
-    }, []);
+    }, [setUsers]);
 
 
     const deleteUser = async(userId) => {
@@ -35,7 +35,8 @@ const ShowUser = () => {
 
 
     return (
-        <><div className="horizontal">
+        <> <Navbar />
+        <div className="horizontal">
             {users.map((user, index) => {
                 return (
                     <div className="block" key={index}>
@@ -53,6 +54,7 @@ const ShowUser = () => {
         <Link to="/addUser">
             <button> Add User</button>
         </Link>
+       
         </>
         
         
