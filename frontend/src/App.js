@@ -3,14 +3,17 @@ import ShowUser from './getUser/ShowUser';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import AddUser from './addUser/AddUser';
 import UserList from './userList/UserList';
-import Navbar from './Navbar';
+import React, { useState } from "react";
 
 function App() {
+
+  const [users, setUsers] = useState([]);
+ 
 
  const route = createBrowserRouter([
   {
     path: "/",
-    element: [<Navbar />, <ShowUser />]
+    element: <ShowUser users={users} setUsers={setUsers}/>
 
   },
   {
@@ -19,7 +22,7 @@ function App() {
   },
   {
     path: "/userList",
-    element: <UserList />
+    element: <UserList users={users} setUsers={setUsers}/>
   },
  ]);
 
