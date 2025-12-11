@@ -1,6 +1,8 @@
 import React from 'react'
 
 export const UserList = ({users}) => {
+
+    console.log(users);
   return (
 <>
     <div className="App">
@@ -15,8 +17,8 @@ export const UserList = ({users}) => {
             </tbody>
             {users.map((user, index) => {
                 return (
-                    <tbody>
-                    <tr>
+                    <tbody key={index}>
+                    <tr >
                         <td>{user.first_name}</td>
                         <td>{user.last_name}</td>
                         <td>{user.ID_number}</td>
