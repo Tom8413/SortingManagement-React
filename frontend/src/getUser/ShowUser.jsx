@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import "../getUser/showUser.css";
 import { Link } from "react-router-dom";
-import toast from "react-hot-toast";
+//import toast from "react-hot-toast";
 import Navbar from "../Navbar";
 
-const ShowUser = ({users, setUsers}) => {
+const ShowUser = ({users, setUsers, deleteUser}) => {
 
 
     useEffect(() => {
@@ -20,18 +20,6 @@ const ShowUser = ({users, setUsers}) => {
         };
         fetchData()
     }, [setUsers]);
-
-
-    const deleteUser = async(userId) => {
-        await axios.delete(`http://localhost:8000/delete-employee/${userId}`)
-        .then((response) => {
-            setUsers((prevUser) =>prevUser.filter((user) => user._id !== userId));
-            toast.success("User " + response.data.first_name + " deleted successful!", {position: "top-right"});
-        })
-        .catch((error) => {
-            console.log(error);
-        })
-    }
 
 
     return (
