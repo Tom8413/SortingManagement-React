@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.get('/show-employee', appControllersEmployee.employee_details);
 
+router.get('/show-employee2', appControllersEmployee.employee_details2);
+
 router.post('/create-employee', appControllersEmployee.create_employee);
 
 router.delete('/delete-employee/:id', appControllersEmployee.delete_employee);
