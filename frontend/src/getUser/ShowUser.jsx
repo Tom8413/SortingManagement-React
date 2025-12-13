@@ -25,6 +25,7 @@ const ShowUser = ({ users, setUsers, deleteUser }) => {
         <> <Navbar />
             <div className="horizontal">
                 {users.map((user, index) => {
+                    if(index < 8) {
                     return (
                         <div className="block" key={index}>
                             <div>First name: {user.first_name}</div>
@@ -35,8 +36,12 @@ const ShowUser = ({ users, setUsers, deleteUser }) => {
                                 onClick={() => deleteUser(user._id)}
                             >Delete</button>
                         </div>
-                    );
+                    ); 
+                    } else {
+                       return  null
+                    }
                 })}
+                
             </div>
             <Link to="/addUser">
                 <button> Add User</button>
