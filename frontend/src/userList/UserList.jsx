@@ -1,9 +1,23 @@
 import React from 'react'
 import "../userList/UserList.css";
+import { useEffect } from 'react'; 
+import axios from 'axios';
 
-export const UserList = ({users, deleteUser}) => {
+export const UserList = ({users, setUsers, deleteUser}) => {
 
-    console.log(users);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("http://localhost:8000/show-employee2");
+                setUsers(response.data);
+            } catch (error) {
+                console.log(error);
+
+            }
+        };
+        fetchData()
+    }, [setUsers]);
+
   return (
 <>
     <div className="table">
