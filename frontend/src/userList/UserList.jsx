@@ -3,20 +3,20 @@ import "../userList/UserList.css";
 import { useEffect } from 'react'; 
 import axios from 'axios';
 
-export const UserList = ({users, setUsers, deleteUser}) => {
+export const UserList = ({users2, setUsers2, deleteUser}) => {
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get("http://localhost:8000/show-employee2");
-                setUsers(response.data);
+                setUsers2(response.data);
             } catch (error) {
                 console.log(error);
 
             }
         };
         fetchData()
-    }, [setUsers]);
+    }, [setUsers2]);
 
   return (
 <>
@@ -32,7 +32,7 @@ export const UserList = ({users, setUsers, deleteUser}) => {
                 <th>Send User to Department</th>
             </tr>
             </tbody>
-            {users.map((user, index) => {
+            {users2.map((user, index) => {
                 return (
                     <tbody key={index}>
                     <tr >
