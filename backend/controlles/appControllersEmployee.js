@@ -63,6 +63,18 @@ const delete_employee = (req, res) => {
             console.log(err);
         })
 }
+const delete_employee2 = (req, res) => {
+    const id = req.params.id;
+    Employees2.findByIdAndDelete(id)
+        .then(result => {
+            res.status(200).send(result)
+            console.log(result);
+        })
+        .catch(err => {
+            res.status(500);
+            console.log(err);
+        })
+}
 
 module.exports = {
 
@@ -71,4 +83,5 @@ module.exports = {
     employee_details,
     employee_details2,
     delete_employee,
+    delete_employee2,
 };
