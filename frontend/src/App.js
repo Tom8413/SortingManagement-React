@@ -16,7 +16,7 @@ function App() {
   const deleteUser = async (userId) => {
     await axios.delete(`http://localhost:8000/delete-employee/${userId}`)
       .then((response) => {
-        setUsers((prevUser) => prevUser.filter((user) => user._id !== userId));
+        setUsers((prevUser) => prevUser.filter((user) => user._id !== userId));        
         toast.success("User " + response.data.first_name + " deleted successful!", { position: "top-right" });
       })
       .catch((error) => {
@@ -24,22 +24,19 @@ function App() {
       })
   };
 
-const url = "http://localhost:8000/show-employee";
+  const deleteUser2 = async (userId) => {
+    await axios.delete(`http://localhost:8000/delete-employee2/${userId}`)
+      .then((response) => {
+        setUsers2((prevUser) => prevUser.filter((user) => user._id !== userId));        
+        toast.success("User " + response.data.first_name + " deleted successful!", { position: "top-right" });
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  };
+
 
   useEffect(() => {
-    const fetchData = async (setUsers, url) => {
-        try {
-            const response = await axios.get(url);
-            setUsers(response.data);
-        } catch (error) {
-            console.log(error);
-  
-        }
-    };
-    fetchData()
-  }, [setUsers]);
-
-/*  useEffect(() => {
     const fetchData = async () => {
         try {
             const response = await axios.get("http://localhost:8000/show-employee");
@@ -48,22 +45,17 @@ const url = "http://localhost:8000/show-employee";
             console.log(error);
   
         }
-    };
-    fetchData()
-  }, [setUsers]);
-*/
-  useEffect(() => {
-    const fetchData = async () => {
         try {
-            const response = await axios.get("http://localhost:8000/show-employee2");
-            setUsers2(response.data);
-        } catch (error) {
-            console.log(error);
+          const response2 = await axios.get("http://localhost:8000/show-employee2");
+          setUsers2(response2.data);
+      } catch (error) {
+          console.log(error);
 
-        }
+      }
     };
     fetchData()
-}, [setUsers2]);
+  }, [setUsers, setUsers2]);
+
 
   const route = createBrowserRouter([
     {
@@ -77,7 +69,7 @@ const url = "http://localhost:8000/show-employee";
     },
     {
       path: "/userList",
-      element: <UserList users2={users2} setUsers2={setUsers2} deleteUser={deleteUser}/>
+      element: <UserList users2={users2} setUsers2={setUsers2} deleteUser2={deleteUser2}/>
     },
   ]);
 
