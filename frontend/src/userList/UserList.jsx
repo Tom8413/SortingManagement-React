@@ -1,22 +1,7 @@
 import React from 'react'
 import "../userList/UserList.css";
-import { useEffect } from 'react'; 
-import axios from 'axios';
 
-export const UserList = ({users2, setUsers2, deleteUser}) => {
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get("http://localhost:8000/show-employee2");
-                setUsers2(response.data);
-            } catch (error) {
-                console.log(error);
-
-            }
-        };
-        fetchData()
-    }, [setUsers2]);
+export const UserList = ({users2, deleteUser2}) => {
 
   return (
 <>
@@ -40,7 +25,7 @@ export const UserList = ({users2, setUsers2, deleteUser}) => {
                         <td>{user.last_name}</td>
                         <td>{user.ID_number}</td>
                         <td>{user.Department}</td>
-                        <td><button onClick={() => deleteUser(user._id)}>Delete</button></td>
+                        <td><button onClick={() => deleteUser2(user._id)}>Delete</button></td>
                         <td><button>Send</button></td>
                     </tr>
                     </tbody>
