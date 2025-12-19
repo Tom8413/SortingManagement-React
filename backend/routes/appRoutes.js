@@ -9,6 +9,8 @@ router.get('/show-employee2', appControllersEmployee.employee_details2);
 
 router.post('/create-employee', appControllersEmployee.create_employee);
 
+router.post('/create-employee2', appControllersEmployee.create_employee2);
+
 router.delete('/delete-employee/:id', appControllersEmployee.delete_employee);
 
 router.delete('/delete-employee2/:id', appControllersEmployee.delete_employee2);
