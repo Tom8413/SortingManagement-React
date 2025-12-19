@@ -6,3 +6,8 @@ th, td {
     padding: 10px;
     border: 1px solid;
   }
+.MainPage {
+  margin-top: 15px;
+  margin-left: 15px;
+  margin-bottom: 10px;
+}
