@@ -35,7 +35,17 @@ export const AddUser = () => {
       .catch ((error) => {
       console.log(error);
     })
-  };
+
+    await axios.post("http://localhost:8000/create-employee2", data)
+    .then((response2) => {
+      console.log(response2.data);
+      toast.success("User " + response2.data.first_name + " created successful!", {position: "top-right"});
+      navigate("/");
+    })
+    .catch ((error) => {
+    console.log(error);
+  })
+  }
 
   return (
     <div className="backdrop">
