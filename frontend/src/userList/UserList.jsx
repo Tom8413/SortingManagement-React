@@ -1,11 +1,33 @@
 import React from 'react'
 import "../userList/UserList.css";
+import { Link } from "react-router-dom";
+import axios from 'axios';
+import { useEffect } from 'react'; 
 
-export const UserList = ({users2, deleteUser2}) => {
+export const UserList = ({users2, setUsers2, deleteUser2}) => {
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+              const response2 = await axios.get("http://localhost:8000/show-employee2");
+              setUsers2(response2.data);
+          } catch (error) {
+              console.log(error);
+    
+          }
+        };
+        fetchData()
+      }, [setUsers2]);
 
   return (
 <>
     <div className="table">
+        <div className="MainPage">
+            <Link to="/">
+                Main Page
+            </Link>
+        </div>
+
         <table>
             <tbody>
             <tr>
