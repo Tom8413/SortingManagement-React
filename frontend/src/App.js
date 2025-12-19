@@ -25,10 +25,20 @@ function App() {
   };
 
   const deleteUser2 = async (userId) => {
-    await axios.delete(`http://localhost:8000/delete-employee2/${userId}`)
+
+    await axios.delete(`http://localhost:8000/delete-employee/${userId}`)
       .then((response) => {
-        setUsers2((prevUser) => prevUser.filter((user) => user._id !== userId));        
+        setUsers((prevUser) => prevUser.filter((user) => user._id !== userId));        
         toast.success("User " + response.data.first_name + " deleted successful!", { position: "top-right" });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    await axios.delete(`http://localhost:8000/delete-employee2/${userId}`)
+      .then((response2) => {
+        setUsers2((prevUser2) => prevUser2.filter((user2) => user2._id !== userId));        
+        toast.success("User " + response2.data.first_name + " deleted successful!", { position: "top-right" });
       })
       .catch((error) => {
         console.log(error);
@@ -38,13 +48,6 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-        try {
-            const response = await axios.get("http://localhost:8000/show-employee");
-            setUsers(response.data);
-        } catch (error) {
-            console.log(error);
-  
-        }
         try {
           const response2 = await axios.get("http://localhost:8000/show-employee2");
           setUsers2(response2.data);
