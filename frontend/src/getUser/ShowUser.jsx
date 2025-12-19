@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import axios from "axios";
 import "../getUser/showUser.css";
 import { Link } from "react-router-dom";
