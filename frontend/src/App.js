@@ -24,20 +24,22 @@ function App() {
       })
   };
 
-  const deleteUser2 = async (userId) => {
+  const deleteUser2 = async (ID_number) => {
 
-    await axios.delete(`http://localhost:8000/delete-employee/${userId}`)
+    await axios.delete(`http://localhost:8000/delete-employee/${ID_number}`)
       .then((response) => {
-        setUsers((prevUser) => prevUser.filter((user) => user._id !== userId));        
+        console.log(response)
+        setUsers((prevUser) => prevUser.filter((user) => user.ID_number !== ID_number));        
         toast.success("User " + response.data.first_name + " deleted successful!", { position: "top-right" });
       })
       .catch((error) => {
         console.log(error);
-      });
+      }); 
 
-    await axios.delete(`http://localhost:8000/delete-employee2/${userId}`)
+    await axios.delete(`http://localhost:8000/delete-employee2/${ID_number}`)
       .then((response2) => {
-        setUsers2((prevUser2) => prevUser2.filter((user2) => user2._id !== userId));        
+        console.log(response2)
+        setUsers2((prevUser2) => prevUser2.filter((user2) => user2.ID_number !== ID_number));  
         toast.success("User " + response2.data.first_name + " deleted successful!", { position: "top-right" });
       })
       .catch((error) => {
