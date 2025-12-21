@@ -34,14 +34,14 @@ const create_employee = (req, res) => {
         })
         .catch((err) => {
             console.log(err);
-        })
+        });
 };
 
 const create_employee2 = (req, res) => {
 
     const employee2 = new Employees2(req.body);
 
-    employee2.save()
+        employee2.save()
         .then((result) => {
             res.status(201).send(result)
             console.log(req.body)
@@ -51,9 +51,10 @@ const create_employee2 = (req, res) => {
         })
 };
 
+
 const delete_employee = (req, res) => {
-    const id = req.params.id;
-    Employees.findByIdAndDelete(id)
+    const id_number = req.params.ID_number;
+    Employees.findOneAndDelete(id_number)
         .then(result => {
             res.status(200).send(result)
             console.log(result);
@@ -64,8 +65,8 @@ const delete_employee = (req, res) => {
         })
 }
 const delete_employee2 = (req, res) => {
-    const id = req.params.id;
-    Employees2.findByIdAndDelete(id)
+    const id_number = req.params.ID_number;
+    Employees2.findOneAndDelete(id_number)
         .then(result => {
             res.status(200).send(result)
             console.log(result);
@@ -74,7 +75,7 @@ const delete_employee2 = (req, res) => {
             res.status(500);
             console.log(err);
         })
-}
+    }
 
 module.exports = {
 
