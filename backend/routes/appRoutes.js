@@ -11,9 +11,9 @@ router.post('/create-employee', appControllersEmployee.create_employee);
 
 router.post('/create-employee2', appControllersEmployee.create_employee2);
 
-router.delete('/delete-employee/:id', appControllersEmployee.delete_employee);
+router.delete('/delete-employee/:ID_number', appControllersEmployee.delete_employee);
 
-router.delete('/delete-employee2/:id', appControllersEmployee.delete_employee2);
+router.delete('/delete-employee2/:ID_number', appControllersEmployee.delete_employee2);
 
 router.get('/show-EuroPallet', appControllersEuroPallet.EuroPallet_details);
 
