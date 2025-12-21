@@ -54,7 +54,7 @@ const create_employee2 = (req, res) => {
 
 const delete_employee = (req, res) => {
     const id_number = req.params.ID_number;
-    Employees.findOneAndDelete(id_number)
+    Employees.findOneAndDelete({ID_number: id_number})
         .then(result => {
             res.status(200).send(result)
             console.log(result);
@@ -66,7 +66,8 @@ const delete_employee = (req, res) => {
 }
 const delete_employee2 = (req, res) => {
     const id_number = req.params.ID_number;
-    Employees2.findOneAndDelete(id_number)
+    console.log(id_number);
+    Employees2.findOneAndDelete({ID_number: id_number})
         .then(result => {
             res.status(200).send(result)
             console.log(result);
