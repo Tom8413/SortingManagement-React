@@ -3,6 +3,7 @@ import "../userList/UserList.css";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useEffect } from 'react'; 
+//import toast from "react-hot-toast";
 
 export const UserList = ({users2, setUsers2, deleteUser2}) => {
 
@@ -18,6 +19,7 @@ export const UserList = ({users2, setUsers2, deleteUser2}) => {
         };
         fetchData()
       }, [setUsers2]);
+      
 
   return (
 <>
@@ -47,7 +49,7 @@ export const UserList = ({users2, setUsers2, deleteUser2}) => {
                         <td>{user.last_name}</td>
                         <td>{user.ID_number}</td>
                         <td>{user.Department}</td>
-                        <td><button onClick={() => deleteUser2(user._id)}>Delete</button></td>
+                        <td><button onClick={() => deleteUser2(user.ID_number)}>Delete</button></td>
                         <td><button>Send</button></td>
                     </tr>
                     </tbody>
