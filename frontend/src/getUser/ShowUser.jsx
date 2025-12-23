@@ -33,7 +33,7 @@ const ShowUser = ({ users, setUsers, deleteUser }) => {
                             <div>ID number: {user.ID_number}</div>
                             <div>Department: {user.Department}</div>
                             <button
-                                onClick={() => deleteUser(user._id)}
+                                onClick={() => deleteUser(user.ID_number)}
                             >Delete</button>
                         </div>
                     ); 
