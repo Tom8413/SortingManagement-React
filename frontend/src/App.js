@@ -13,16 +13,17 @@ function App() {
   const [users, setUsers] = useState([]);
   const [users2, setUsers2] = useState([]);
 
-  const deleteUser = async (userId) => {
-    await axios.delete(`http://localhost:8000/delete-employee/${userId}`)
-      .then((response) => {
-        setUsers((prevUser) => prevUser.filter((user) => user._id !== userId));        
-        toast.success("User " + response.data.first_name + " deleted successful!", { position: "top-right" });
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  };
+  const deleteUser = async (ID_number) => {
+    await axios.delete(`http://localhost:8000/delete-employee/${ID_number}`)
+    .then((response) => {
+      console.log(response)
+      setUsers((prevUser) => prevUser.filter((user) => user.ID_number !== ID_number));        
+      toast.success("User " + response.data.first_name + " deleted successful!", { position: "top-right" });
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }; 
 
   const deleteUser2 = async (ID_number) => {
 
@@ -40,7 +41,7 @@ function App() {
       .then((response2) => {
         console.log(response2)
         setUsers2((prevUser2) => prevUser2.filter((user2) => user2.ID_number !== ID_number));  
-        toast.success("User " + response2.data.first_name + " deleted successful!", { position: "top-right" });
+        toast.success("User " + response2.data.first_name + " deleted from database successful!", { position: "top-right" });
       })
       .catch((error) => {
         console.log(error);
