@@ -39,7 +39,7 @@ export const AddUser = () => {
     await axios.post("http://localhost:8000/create-employee2", data)
     .then((response2) => {
       console.log(response2.data);
-      toast.success("User " + response2.data.first_name + " created successful!", {position: "top-right"});
+      toast.success("User " + response2.data.first_name + " created in database successful!", {position: "top-right"});
       navigate("/");
     })
     .catch ((error) => {
@@ -59,7 +59,7 @@ export const AddUser = () => {
              value={first_name}
              placeholder='Enter First Name' 
              maxLength="15" 
-             onChange={(event) => setFirst_name(event.target.value)}
+             onChange={(event) => setFirst_name(event.target.value.replace(/[^a-z]/gi, ''))}
              />
 
       <label htmlFor='last_name'>Last Name:</label>
@@ -69,18 +69,17 @@ export const AddUser = () => {
              value={last_name}
              maxLength="15"  
              placeholder='Enter Last Name'
-             onChange={(event) => setLast_name(event.target.value)}
+             onChange={(event) => setLast_name(event.target.value.replace(/[^a-z]/gi, ''))}
              />
 
       <label htmlFor='ID_number'>ID_number:</label>
       <input type="text"
-             //onkeypress='return event.charCode >= 48 && event.charCode <= 57'
              maxLength="8" 
              id='ID_number'
              name='IDNumber'
              value={ID_number}
              placeholder='ID_number'
-             onChange={(event) => setID_number(event.target.value)}
+             onChange={(event) => setID_number(event.target.value.replace(/[^0-9]/gi, ''))}
              />
 
       <label htmlFor='Department'>Department: </label>
