@@ -58,7 +58,8 @@ export const AddUser = () => {
              name='first_name'
              value={first_name}
              placeholder='Enter First Name' 
-             maxLength="15" 
+             maxLength={15} 
+             minLength={3}
              onChange={(event) => setFirst_name(event.target.value.replace(/[^a-z]/gi, ''))}
              />
 
@@ -67,14 +68,16 @@ export const AddUser = () => {
              id='last_name'
              name='lastName'
              value={last_name}
-             maxLength="15"  
+             maxLength={15}  
+             minLength={3}
              placeholder='Enter Last Name'
              onChange={(event) => setLast_name(event.target.value.replace(/[^a-z]/gi, ''))}
              />
 
       <label htmlFor='ID_number'>ID_number:</label>
       <input type="text"
-             maxLength="8" 
+             maxLength={8}
+             minLength={7} 
              id='ID_number'
              name='IDNumber'
              value={ID_number}
