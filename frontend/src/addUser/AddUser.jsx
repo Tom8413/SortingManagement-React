@@ -15,8 +15,15 @@ export const AddUser = () => {
   const navigate = useNavigate();
   
   
+  const isFromValid = ()  => {
+    return first_name.length >= 3 && 
+           last_name.length >= 3 && 
+           ID_number.length >=7 
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+
 
     const data = {
       first_name: first_name,
@@ -24,7 +31,6 @@ export const AddUser = () => {
       ID_number: ID_number,
       Department: Department,
     };
-
     
       await axios.post("http://localhost:8000/create-employee", data)
       .then((response) => {
@@ -59,7 +65,6 @@ export const AddUser = () => {
              value={first_name}
              placeholder='Enter First Name' 
              maxLength={15} 
-             minLength={3}
              onChange={(event) => setFirst_name(event.target.value.replace(/[^a-z]/gi, ''))}
              />
 
@@ -69,7 +74,6 @@ export const AddUser = () => {
              name='lastName'
              value={last_name}
              maxLength={15}  
-             minLength={3}
              placeholder='Enter Last Name'
              onChange={(event) => setLast_name(event.target.value.replace(/[^a-z]/gi, ''))}
              />
@@ -77,7 +81,6 @@ export const AddUser = () => {
       <label htmlFor='ID_number'>ID_number:</label>
       <input type="text"
              maxLength={8}
-             minLength={7} 
              id='ID_number'
              name='IDNumber'
              value={ID_number}
@@ -95,7 +98,8 @@ export const AddUser = () => {
         <option value="STM">STM</option>
         <option value="Kids">Kids</option>
       </select>
-      <button type="submit">      
+      <button type="submit"
+      disabled={!isFromValid()}>      
               Submit
       </button>
       <Link to="/">
