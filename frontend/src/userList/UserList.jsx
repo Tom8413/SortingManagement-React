@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useEffect } from 'react'; 
 //import toast from "react-hot-toast";
 
-export const UserList = ({users2, setUsers2, deleteUser2}) => {
+export const UserList = ({users2, setUsers2, deleteUser2, sendUser}) => {
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,7 +19,7 @@ export const UserList = ({users2, setUsers2, deleteUser2}) => {
         };
         fetchData()
       }, [setUsers2]);
-      
+ 
 
   return (
 <>
@@ -50,7 +50,7 @@ export const UserList = ({users2, setUsers2, deleteUser2}) => {
                         <td>{user.ID_number}</td>
                         <td>{user.Department}</td>
                         <td><button onClick={() => deleteUser2(user.ID_number)}>Delete</button></td>
-                        <td><button>Send</button></td>
+                        <td><button onClick={() => sendUser(users2[index])}>Send</button></td>
                     </tr>
                     </tbody>
                 )
