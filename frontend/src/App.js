@@ -6,41 +6,42 @@ import UserList from './userList/UserList';
 import React, { useState } from "react";
 import axios from 'axios';
 import toast from "react-hot-toast";
-import { useEffect } from 'react'; 
+import { useEffect } from 'react';
 
 function App() {
 
   const [users, setUsers] = useState([]);
   const [users2, setUsers2] = useState([]);
 
+
   const deleteUser = async (ID_number) => {
     await axios.delete(`http://localhost:8000/delete-employee/${ID_number}`)
-    .then((response) => {
-      console.log(response)
-      setUsers((prevUser) => prevUser.filter((user) => user.ID_number !== ID_number));        
-      toast.success("User " + response.data.first_name + " deleted successful!", { position: "top-right" });
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-  }; 
+      .then((response) => {
+        console.log(response)
+        setUsers((prevUser) => prevUser.filter((user) => user.ID_number !== ID_number));
+        toast.success("User " + response.data.first_name + " deleted successful!", { position: "top-right" });
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  };
 
   const deleteUser2 = async (ID_number) => {
 
     await axios.delete(`http://localhost:8000/delete-employee/${ID_number}`)
       .then((response) => {
         console.log(response)
-        setUsers((prevUser) => prevUser.filter((user) => user.ID_number !== ID_number));        
+        setUsers((prevUser) => prevUser.filter((user) => user.ID_number !== ID_number));
         toast.success("User " + response.data.first_name + " deleted successful!", { position: "top-right" });
       })
       .catch((error) => {
         console.log(error);
-      }); 
+      });
 
     await axios.delete(`http://localhost:8000/delete-employee2/${ID_number}`)
       .then((response2) => {
         console.log(response2)
-        setUsers2((prevUser2) => prevUser2.filter((user2) => user2.ID_number !== ID_number));  
+        setUsers2((prevUser2) => prevUser2.filter((user2) => user2.ID_number !== ID_number));
         toast.success("User " + response2.data.first_name + " deleted from database successful!", { position: "top-right" });
       })
       .catch((error) => {
@@ -51,11 +52,11 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-        try {
-          const response2 = await axios.get("http://localhost:8000/show-employee2");
-          setUsers2(response2.data);
+      try {
+        const response2 = await axios.get("http://localhost:8000/show-employee2");
+        setUsers2(response2.data);
       } catch (error) {
-          console.log(error);
+        console.log(error);
 
       }
     };
@@ -63,10 +64,26 @@ function App() {
   }, [setUsers, setUsers2]);
 
 
+  const sendUser = async(props) => {
+
+    const data = props;
+
+    await axios.post("http://localhost:8000/create-employee", data)
+      .then((response) => {
+        console.log(response.data);
+        
+      })
+      .catch ((error) => {
+      console.log(error);
+    })
+
+
+  }
+ 
   const route = createBrowserRouter([
     {
       path: "/",
-      element: <ShowUser users={users} setUsers={setUsers} deleteUser={deleteUser}/>
+      element: <ShowUser users={users} setUsers={setUsers} deleteUser={deleteUser} />
 
     },
     {
@@ -75,7 +92,7 @@ function App() {
     },
     {
       path: "/userList",
-      element: <UserList users2={users2} setUsers2={setUsers2} deleteUser2={deleteUser2}/>
+      element: <UserList users2={users2} setUsers2={setUsers2} deleteUser2={deleteUser2} sendUser={sendUser} />
     },
   ]);
 
