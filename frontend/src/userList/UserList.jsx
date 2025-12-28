@@ -29,7 +29,7 @@ export const UserList = ({users2, setUsers2, deleteUser2, sendUser}) => {
                 Main Page
             </Link>
         </div>
-
+        <div><button className="buttonCentred">Add user</button></div>
         <table>
             <tbody>
             <tr>
