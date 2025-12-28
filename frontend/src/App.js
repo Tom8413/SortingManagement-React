@@ -3,6 +3,7 @@ import ShowUser from './getUser/ShowUser';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AddUser from './addUser/AddUser';
 import UserList from './userList/UserList';
+import AdduserToDataBase from './adduserToDataBase/AdduserToDataBase'
 import React, { useState } from "react";
 import axios from 'axios';
 import toast from "react-hot-toast";
@@ -93,6 +94,10 @@ function App() {
     {
       path: "/userList",
       element: <UserList users2={users2} setUsers2={setUsers2} deleteUser2={deleteUser2} sendUser={sendUser} />
+    },
+    {
+      path: "/adduserToDataBase",
+      element: <AdduserToDataBase />
     },
   ]);
 
