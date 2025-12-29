@@ -29,7 +29,8 @@ export const UserList = ({users2, setUsers2, deleteUser2, sendUser}) => {
 
       const filteredUser = users2.filter(user =>
         user.first_name.toLowerCase().includes(filterText.toLocaleLowerCase()) ||
-        user.last_name.toLowerCase().includes(filterText.toLocaleLowerCase())
+        user.last_name.toLowerCase().includes(filterText.toLocaleLowerCase()) ||
+        user.Department.toLowerCase().includes(filterText.toLocaleLowerCase()) 
         );
 
   return (
@@ -46,10 +47,8 @@ export const UserList = ({users2, setUsers2, deleteUser2, sendUser}) => {
             label="Search User"
             variant='outlined'
             value={filterText}
-            onChange={handleFilterChange}
-            >
+            onChange={handleFilterChange}>
                 
-
             </TextField>
 
         </Box>
