@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "../userList/UserList.css";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useEffect } from 'react'; 
-//import toast from "react-hot-toast";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 export const UserList = ({users2, setUsers2, deleteUser2, sendUser}) => {
+
+    const [filterText, setFilterText] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,6 +23,14 @@ export const UserList = ({users2, setUsers2, deleteUser2, sendUser}) => {
         fetchData()
       }, [setUsers2]);
  
+      const handleFilterChange = (event) => {
+        setFilterText(event.target.value)
+      }
+
+      const filteredUser = users2.filter(user =>
+        user.first_name.toLowerCase().includes(filterText.toLocaleLowerCase()) ||
+        user.last_name.toLowerCase().includes(filterText.toLocaleLowerCase())
+        );
 
   return (
 <>
@@ -29,6 +40,19 @@ export const UserList = ({users2, setUsers2, deleteUser2, sendUser}) => {
                 Main Page
             </Link>
         </div>
+        <Box display='flex' justifyContent="flex-end">
+            <TextField
+            width="40%"
+            label="Search User"
+            variant='outlined'
+            value={filterText}
+            onChange={handleFilterChange}
+            >
+                
+
+            </TextField>
+
+        </Box>
         <div>
             <Link to="/adduserToDataBase">
             <button className="buttonCentred">Add user</button>
@@ -45,7 +69,7 @@ export const UserList = ({users2, setUsers2, deleteUser2, sendUser}) => {
                 <th>Send User to Department</th>
             </tr>
             </tbody>
-            {users2.map((user, index) => {
+            {filteredUser.map((user, index) => {
                 return (
                     <tbody key={index}>
                     <tr >
