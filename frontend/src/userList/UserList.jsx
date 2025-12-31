@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import "../userList/UserList.css";
 import { Link } from "react-router-dom";
 import axios from 'axios';
@@ -41,6 +41,7 @@ export const UserList = ({users2, setUsers2, deleteUser2, sendUser}) => {
                 Main Page
             </Link>
         </div>
+        <div>
         <Box display='flex' justifyContent="flex-end">
             <TextField
             width="40%"
@@ -52,11 +53,13 @@ export const UserList = ({users2, setUsers2, deleteUser2, sendUser}) => {
             </TextField>
 
         </Box>
-        <div>
+        </div>
+        
             <Link to="/adduserToDataBase">
-            <button className="buttonCentred">Add user</button>
+            <button type='button' 
+                    className="buttonCentred">Add user</button>
             </Link>
-            </div>
+        
         <table>
             <tbody>
             <tr>
