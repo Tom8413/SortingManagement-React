@@ -6,7 +6,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast'
 
 
-export const AddUser = (props) => {
+export const AddUser = (users) => {
 
   const [first_name, setFirst_name] = useState('');
   const [last_name, setLast_name] = useState('');
@@ -15,17 +15,16 @@ export const AddUser = (props) => {
   const navigate = useNavigate();
 
  
-  //console.log(props.users)
+  //console.log(users)
   const isFromValid = ()  => {
     return first_name.length >= 3 && 
            last_name.length >= 3 && 
            ID_number.length >=7 
   }
 
-  const handleSubmit = async (event, props) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
 
-console.log(users.props)
     const data = {
       first_name: first_name,
       last_name: last_name,
@@ -33,7 +32,8 @@ console.log(users.props)
       Department: Department,
     };
     
-    //if(users.length < 8) {
+    console.log(users.length)
+    if(users.length < 10) {
       await axios.post("http://localhost:8000/create-employee", data)
       .then((response) => {
         console.log(response.data);
@@ -43,7 +43,7 @@ console.log(users.props)
       .catch ((error) => {
       console.log(error);
     })
-  //}
+  }
 
     await axios.post("http://localhost:8000/create-employee2", data)
     .then((response2) => {
