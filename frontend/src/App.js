@@ -89,7 +89,7 @@ function App() {
     },
     {
       path: "/addUser",
-      element: <AddUser />
+      element: <AddUser users={users}/>
     },
     {
       path: "/userList",
