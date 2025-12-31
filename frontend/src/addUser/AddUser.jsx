@@ -6,25 +6,26 @@ import axios from 'axios';
 import toast from 'react-hot-toast'
 
 
-export const AddUser = () => {
+export const AddUser = (props) => {
 
   const [first_name, setFirst_name] = useState('');
   const [last_name, setLast_name] = useState('');
   const [ID_number, setID_number] = useState('');
   const [Department, setDepartment] = useState('NCP');
   const navigate = useNavigate();
-  
-  
+
+ 
+  //console.log(props.users)
   const isFromValid = ()  => {
     return first_name.length >= 3 && 
            last_name.length >= 3 && 
            ID_number.length >=7 
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event, props) => {
     event.preventDefault();
 
-
+console.log(users.props)
     const data = {
       first_name: first_name,
       last_name: last_name,
@@ -32,6 +33,7 @@ export const AddUser = () => {
       Department: Department,
     };
     
+    //if(users.length < 8) {
       await axios.post("http://localhost:8000/create-employee", data)
       .then((response) => {
         console.log(response.data);
@@ -41,6 +43,7 @@ export const AddUser = () => {
       .catch ((error) => {
       console.log(error);
     })
+  //}
 
     await axios.post("http://localhost:8000/create-employee2", data)
     .then((response2) => {
