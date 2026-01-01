@@ -1,5 +1,6 @@
 .navlink-left {
     display: flex;
+    width: 8%;
     position: right;
     background-color: rgb(194, 106, 106);
     color: #fff;
