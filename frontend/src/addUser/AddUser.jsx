@@ -6,7 +6,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast'
 
 
-export const AddUser = (users) => {
+export const AddUser = (props) => {
 
   const [first_name, setFirst_name] = useState('');
   const [last_name, setLast_name] = useState('');
@@ -25,15 +25,17 @@ export const AddUser = (users) => {
   const handleSubmit = async(event) => {
     event.preventDefault();
 
+    let users = props.users;
+
     const data = {
       first_name: first_name,
       last_name: last_name,
       ID_number: ID_number,
       Department: Department,
     };
+
     
-    console.log(users.length)
-    if(users.length < 10) {
+    if(users.length < 8) {
       await axios.post("http://localhost:8000/create-employee", data)
       .then((response) => {
         console.log(response.data);
