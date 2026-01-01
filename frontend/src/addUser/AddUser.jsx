@@ -45,6 +45,9 @@ export const AddUser = (props) => {
       .catch ((error) => {
       console.log(error);
     })
+  } else {
+    toast.error("User cannot be add to department" , {position: "top-right"});
+
   }
 
     await axios.post("http://localhost:8000/create-employee2", data)
