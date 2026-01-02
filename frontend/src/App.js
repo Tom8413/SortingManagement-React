@@ -89,7 +89,7 @@ function App() {
     },
     {
       path: "/addUser",
-      element: <AddUser users={users}/>
+      element: <AddUser users={users} setUsers={setUsers} setUsers2={setUsers2}/>
     },
     {
       path: "/userList",
