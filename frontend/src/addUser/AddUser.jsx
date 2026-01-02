@@ -33,9 +33,16 @@ export const AddUser = (props) => {
       ID_number: ID_number,
       Department: Department,
     };
+    console.log((props.users.find((user) => user.ID_number)).ID_number);
+    console.log(event.target.ID_number.value)
 
-    
-    if(users.length < 8) {
+    if((users.filter((user) => user.ID_number === event.target.ID_number.value))) {
+
+     console.log(props.users)
+     //console.log(users.user.ID_number)
+     //console.log(user.ID_number)
+     console.log(event.target.ID_number.value + 'tak')
+      //if(users.length < 8) {
       await axios.post("http://localhost:8000/create-employee", data)
       .then((response) => {
         console.log(response.data);
@@ -45,10 +52,17 @@ export const AddUser = (props) => {
       .catch ((error) => {
       console.log(error);
     })
-  } else {
-    toast.error("User cannot be add to department" , {position: "top-right"});
+  }
+  else {
+    toast.error("User already exist in Department" , {position: "top-right"});
+    console.log(event.target.ID_number.value)
+    //console.log(user.ID_number)
+    //console.log(prevUser)
+    console.log(props.setUsers)
 
   }
+  /*
+  if(props.setUsers2((prevUser2) => prevUser2.filter((user2) => user2.ID_number !== event.target.value))) {
 
     await axios.post("http://localhost:8000/create-employee2", data)
     .then((response2) => {
@@ -59,8 +73,12 @@ export const AddUser = (props) => {
     .catch ((error) => {
     console.log(error);
   })
-  }
-
+} else {
+  toast.error("User already exist in DataBase" , {position: "top-right"});
+}
+*/
+}
+  
   return (
     <div className="backdrop">
  
