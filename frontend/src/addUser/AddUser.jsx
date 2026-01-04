@@ -25,7 +25,7 @@ export const AddUser = (props) => {
   const handleSubmit = async(event) => {
     event.preventDefault();
 
-    let users = props.users;
+    //let users = props.users;
 
     const data = {
       first_name: first_name,
@@ -33,14 +33,16 @@ export const AddUser = (props) => {
       ID_number: ID_number,
       Department: Department,
     };
-    console.log((props.users.find((user) => user.ID_number)).ID_number);
+    console.log(props.users)
+    console.log(props.users.filter((user) => user.ID_number === event.target.ID_number.value) ); //znajduje usera i jego Id_number ale nie porównuje go z niczym!!!!
     console.log(event.target.ID_number.value)
+    console.log(props.users)
 
-    if((users.filter((user) => user.ID_number === event.target.ID_number.value))) {
+    if(props.users.filter((user) => user.ID_number !== event.target.ID_number.value)) {
+    //if(((users.find((user) => user.ID_number)).ID_number === event.target.ID_number.value)) {
 
      console.log(props.users)
-     //console.log(users.user.ID_number)
-     //console.log(user.ID_number)
+
      console.log(event.target.ID_number.value + 'tak')
       //if(users.length < 8) {
       await axios.post("http://localhost:8000/create-employee", data)
@@ -55,10 +57,6 @@ export const AddUser = (props) => {
   }
   else {
     toast.error("User already exist in Department" , {position: "top-right"});
-    console.log(event.target.ID_number.value)
-    //console.log(user.ID_number)
-    //console.log(prevUser)
-    console.log(props.setUsers)
 
   }
   /*
