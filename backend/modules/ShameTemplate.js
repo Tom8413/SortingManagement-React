@@ -11,7 +11,7 @@ const employeesSchema = new Schema({
         Required: true
     },
     ID_number: {
-        type: Number,
+        type: String,
         Required: true
     },
     Department: {
