@@ -120,11 +120,11 @@ export const AddUser = (props) => {
           disabled={!isFromValid()}>
           Submit
         </button>
-        <Link to="/">
-          <button type='button'>
+        
+          <button type='button' onClick={() => navigate("/")}>
             Cancel
           </button>
-        </Link>
+        
       </form>
     </div>
   )
