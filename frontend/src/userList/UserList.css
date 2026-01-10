@@ -17,3 +17,31 @@ th, td {
   left: 50%;
   width: 8%;
 }
+
+.tableContainer {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: no-wrap;
+}
+
+.tableData {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: no-wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.tableData > table {
+  width: 90%;
+}
+
+.tableButtonContainer {
+ width: 10%;
+}
+
