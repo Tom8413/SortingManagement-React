@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import '../addUser/addUser.css';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-
 import axios from 'axios';
 import toast from 'react-hot-toast'
 
@@ -95,11 +93,9 @@ export const AddUser = () => {
           Submit
         </button>
 
-        <Link to="/userList">
-          <button type='button'>
+          <button type='button' onClick={() => "/userList"}>
             Cancel
           </button>
-        </Link>
       </form>
     </div>
   )
