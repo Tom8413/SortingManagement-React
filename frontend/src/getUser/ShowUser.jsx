@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import axios from "axios";
 import "../getUser/showUser.css";
-import { Link } from "react-router-dom";
 import Navbar from "../Navbar";
 
 const ShowUser = ({ users, setUsers, deleteUser }) => {
@@ -43,9 +42,7 @@ const ShowUser = ({ users, setUsers, deleteUser }) => {
                 })}
                 
             </div>
-            <Link to="/addUser">
-                <button> Add User</button>
-            </Link>
+                <button type="button" onClick={() => "/addUser"}> Add User</button>
 
         </>
 
