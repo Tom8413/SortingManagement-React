@@ -82,9 +82,7 @@ export const UserList = ({ users2, setUsers2, deleteUser2, sendUser }) => {
                     </table>
 
                     <div className="tableButtonContainer">
-                        <Link to="/adduserToDataBase">
-                            <button type='button'>Add user</button>
-                        </Link>
+                            <button type='button' onClick={() => "/adduserToDataBase"}>Add user</button>
                     </div>
                 </div>
             </div>
