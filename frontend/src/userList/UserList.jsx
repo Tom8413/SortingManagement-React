@@ -5,10 +5,12 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import { useNavigate } from 'react-router-dom';
 
 export const UserList = ({ users2, setUsers2, deleteUser2, sendUser }) => {
 
     const [filterText, setFilterText] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -82,7 +84,7 @@ export const UserList = ({ users2, setUsers2, deleteUser2, sendUser }) => {
                     </table>
 
                     <div className="tableButtonContainer">
-                            <button type='button' onClick={() => "/adduserToDataBase"}>Add user</button>
+                            <button type='button' onClick={() => navigate("/adduserToDataBase")}>Add user</button>
                     </div>
                 </div>
             </div>
