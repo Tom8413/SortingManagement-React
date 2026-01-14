@@ -19,5 +19,30 @@
     margin: 30px 10px auto;
   }
   .horizontal {
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
     display: flex;
+    flex-direction: column;
+    flex-wrap: no-wrap;
+  }
+  .departmentData {
+    width: 100%;
+    box-sizing:  border-box;
+    display:  flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:  flex-start;
+  }
+  .navbarbuttonContainer {
+    width: 100%;
+    display: flex;
+    margin: 30px 0px 0px 5px;
+  }
+  .navbarbuttonContainer > a {
+    width: 90%;
+  }
+  .buttonContainer {
+    display:  flex;
+    width: 10%;
   }
