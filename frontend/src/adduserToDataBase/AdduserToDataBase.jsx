@@ -93,7 +93,7 @@ export const AddUser = () => {
           Submit
         </button>
 
-          <button type='button' onClick={() => "/userList"}>
+          <button type='button' onClick={() => navigate("/userList")}>
             Cancel
           </button>
       </form>
