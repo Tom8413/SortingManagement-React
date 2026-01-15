@@ -24,7 +24,6 @@ export const AddUser = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    //let users = props.users;
 
     const data = {
       first_name: first_name,
