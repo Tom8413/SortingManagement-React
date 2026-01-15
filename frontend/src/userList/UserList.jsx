@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 
-export const UserList = ({ users2, setUsers2, deleteUser2, sendUser }) => {
+export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser }) => {
 
     const [filterText, setFilterText] = useState("");
     const navigate = useNavigate();
@@ -34,6 +34,13 @@ export const UserList = ({ users2, setUsers2, deleteUser2, sendUser }) => {
         user.last_name.toLowerCase().includes(filterText.toLocaleLowerCase()) ||
         user.Department.toLowerCase().includes(filterText.toLocaleLowerCase())
     );
+
+    const isDisabledButton = (index) => {
+        const condition = users.filter((user) => user.ID_number === users2[index].ID_number);
+        if(condition.length !== 0) {
+            return true;
+    };
+    };
 
     return (
         <>
@@ -76,7 +83,8 @@ export const UserList = ({ users2, setUsers2, deleteUser2, sendUser }) => {
                                         <td>{user.ID_number}</td>
                                         <td>{user.Department}</td>
                                         <td><button onClick={() => deleteUser2(user.ID_number)}>Delete</button></td>
-                                        <td><button onClick={() => sendUser(users2[index])}>Send</button></td>
+                                        <td><button disabled={isDisabledButton(index)}
+                                                    onClick={() => sendUser(users2[index])}>Send</button></td>
                                     </tr>
                                 </tbody>
                             )
