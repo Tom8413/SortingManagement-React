@@ -61,7 +61,17 @@ function App() {
 
       }
     };
-    fetchData()
+    const fetchData2 = async () => {
+      try {
+        const response3 = await axios.get("http://localhost:8000/show-employee");
+        setUsers(response3.data);
+      } catch (error) {
+        console.log(error);
+
+      }
+    };
+    fetchData();
+    fetchData2();
   }, [setUsers, setUsers2]);
 
 
@@ -93,7 +103,7 @@ function App() {
     },
     {
       path: "/userList",
-      element: <UserList users2={users2} setUsers2={setUsers2} deleteUser2={deleteUser2} sendUser={sendUser} />
+      element: <UserList users2={users2} setUsers2={setUsers2} deleteUser2={deleteUser2} sendUser={sendUser} users={users}/>
     },
     {
       path: "/adduserToDataBase",
