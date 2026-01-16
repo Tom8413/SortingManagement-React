@@ -25,6 +25,7 @@ export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser }) =>
         fetchData()
     }, [setUsers2]);
 
+
     const handleFilterChange = (event) => {
         setFilterText(event.target.value)
     }
@@ -37,9 +38,12 @@ export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser }) =>
 
     const isDisabledButton = (index) => {
         const condition = users.filter((user) => user.ID_number === users2[index].ID_number);
-        if(condition.length !== 0) {
+        if (condition.length !== 0) {
             return true;
-    };
+        };
+        if (users.length > 7) {
+            return true;
+        };
     };
 
     return (
@@ -83,8 +87,9 @@ export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser }) =>
                                         <td>{user.ID_number}</td>
                                         <td>{user.Department}</td>
                                         <td><button onClick={() => deleteUser2(user.ID_number)}>Delete</button></td>
-                                        <td><button disabled={isDisabledButton(index)}
-                                                    onClick={() => sendUser(users2[index])}>Send</button></td>
+                                        <td><button onClick={() => {sendUser(users2[index])}}
+                                            disabled={isDisabledButton(index)}
+                                        >Send</button></td>
                                     </tr>
                                 </tbody>
                             )
@@ -92,7 +97,7 @@ export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser }) =>
                     </table>
 
                     <div className="tableButtonContainer">
-                            <button type='button' onClick={() => navigate("/adduserToDataBase")}>Add user</button>
+                        <button type='button' onClick={() => navigate("/adduserToDataBase")}>Add user</button>
                     </div>
                 </div>
             </div>
