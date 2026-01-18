@@ -17,6 +17,10 @@ const employeesSchema = new Schema({
     Department: {
         type: String,
         Required: true
+    },
+    DisabledOption: {
+        type: Boolean,
+        Required: true
     }
 }, {timestamps: true});
 
