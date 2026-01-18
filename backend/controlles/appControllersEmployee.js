@@ -51,6 +51,34 @@ const create_employee2 = (req, res) => {
         })
 };
 
+const patch_employee = (req, res) => {
+
+    const id_number = req.params.ID_number;
+    Employees.findOneAndUpadate({ID_number: id_number}, req.body, {new: true})
+
+        .then((result) => {
+            res.status(201).send(result)
+            console.log(req.body)
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+};
+
+const patch_employee2 = (req, res) => {
+
+    const id_number = req.params.ID_number;
+    Employees2.findOneAndUpadate({ID_number: id_number}, req.body, {new: true})
+
+        .then((result) => {
+            res.status(201).send(result)
+            console.log(req.body)
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+};
+
 
 const delete_employee = (req, res) => {
     const id_number = req.params.ID_number;
@@ -86,4 +114,6 @@ module.exports = {
     employee_details2,
     delete_employee,
     delete_employee2,
+    patch_employee,
+    patch_employee2,
 };
