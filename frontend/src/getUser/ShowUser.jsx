@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import "../getUser/showUser.css";
-//import Navbar from "../Navbar";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
