@@ -11,10 +11,10 @@ export const AddUser = (props) => {
   const [last_name, setLast_name] = useState('');
   const [ID_number, setID_number] = useState('');
   const [Department, setDepartment] = useState('NCP');
+  const [DisabledOption] = useState(true);
   const navigate = useNavigate();
 
 
-  //console.log(users)
   const isFromValid = () => {
     return first_name.length >= 3 &&
       last_name.length >= 3 &&
@@ -30,6 +30,7 @@ export const AddUser = (props) => {
       last_name: last_name,
       ID_number: ID_number,
       Department: Department,
+      DisabledOption: DisabledOption
     };
 
     let condition = props.users.filter((user) => (user.ID_number) === (event.target.ID_number.value));
