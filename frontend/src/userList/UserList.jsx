@@ -44,6 +44,7 @@ export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser }) =>
         if (users.length > 7) {
             return true;
         };
+ 
     };
 
     return (
@@ -87,7 +88,7 @@ export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser }) =>
                                         <td>{user.ID_number}</td>
                                         <td>{user.Department}</td>
                                         <td><button onClick={() => deleteUser2(user.ID_number)}>Delete</button></td>
-                                        <td><button onClick={() => {sendUser(users2[index])}}
+                                        <td><button onClick={(index) => {sendUser(users2[index])}}
                                             disabled={isDisabledButton(index)}
                                         >Send</button></td>
                                     </tr>
