@@ -21,5 +21,9 @@ router.post('/createEuroPallet', appControllersEuroPallet.create_EuroPallet);
 
 router.delete('/delete-EuroPallet/:id', appControllersEuroPallet.delete_EuroPallet);
 
+router.patch('/patch_employee/:"ID_number', appControllersEmployee.patch_employee);
+
+router.patch('/patch_employee2/:"ID_number', appControllersEmployee.patch_employee2);
+
 
 module.exports = router;
