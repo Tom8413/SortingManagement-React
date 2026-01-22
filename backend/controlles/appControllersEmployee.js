@@ -54,7 +54,7 @@ const create_employee2 = (req, res) => {
 const patch_employee = (req, res) => {
 
     const id_number = req.params.ID_number;
-    Employees.findOneAndUpadate({ID_number: id_number}, req.body, {new: true})
+    Employees.findOneAndUpdate({ID_number: id_number}, req.body, {new: true})
 
         .then((result) => {
             res.status(201).send(result)
@@ -68,7 +68,9 @@ const patch_employee = (req, res) => {
 const patch_employee2 = (req, res) => {
 
     const id_number = req.params.ID_number;
-    Employees2.findOneAndUpadate({ID_number: id_number}, req.body, {new: true})
+    console.log(id_number)
+    Employees2.findOneAndUpdate({ID_number: id_number}, req.body, {new: true})
+    console.log(req.body)
 
         .then((result) => {
             res.status(201).send(result)
