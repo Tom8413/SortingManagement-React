@@ -75,18 +75,42 @@ function App() {
   }, [setUsers, setUsers2]);
 
 
-  const sendUser = async(props) => {
+  const sendUser = async(index, ID_number) => {
 
-    const data = props;
-
+    const data = users2[index];
+ 
     await axios.post("http://localhost:8000/create-employee", data)
       .then((response) => {
-        console.log(response.data);
+        console.log(response);
         
       })
       .catch ((error) => {
       console.log(error);
     })
+
+     
+  
+    // await axios.patch(`http://localhost:8000/patch_employee2/${ID_number}`, data.DisabledOption = false)
+    // .then((response) => {
+    //   console.log(response.data);
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // }); 
+
+
+  }
+  const sendUser2 = async(index, ID_number) => {
+
+    const data = users2[index].DisabledOption;
+  
+    await axios.patch(`http://localhost:8000/patch_employee2/${ID_number}`, {DisabledOption: !data}, )
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    }); 
 
 
   }
@@ -103,7 +127,7 @@ function App() {
     },
     {
       path: "/userList",
-      element: <UserList users2={users2} setUsers2={setUsers2} deleteUser2={deleteUser2} sendUser={sendUser} users={users}/>
+      element: <UserList users2={users2} setUsers2={setUsers2} deleteUser2={deleteUser2} sendUser={sendUser} sendUser2={sendUser2} users={users}/>
     },
     {
       path: "/adduserToDataBase",
