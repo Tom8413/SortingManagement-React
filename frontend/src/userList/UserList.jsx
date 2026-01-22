@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 
-export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser }) => {
+export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser, sendUser2 }) => {
 
     const [filterText, setFilterText] = useState("");
     const navigate = useNavigate();
@@ -19,10 +19,10 @@ export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser }) =>
                 setUsers2(response2.data);
             } catch (error) {
                 console.log(error);
-
             }
         };
-        fetchData()
+        fetchData();
+         
     }, [setUsers2]);
 
 
@@ -38,13 +38,12 @@ export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser }) =>
 
     const isDisabledButton = (index) => {
         const condition = users.filter((user) => user.ID_number === users2[index].ID_number);
-        if (condition.length !== 0) {
+        if (condition.length !== 0 || users.length > 7) {
             return true;
+        } else {
+            //users2[index].DisabledOption = false;
         };
-        if (users.length > 7) {
-            return true;
-        };
- 
+
     };
 
     return (
@@ -88,9 +87,11 @@ export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser }) =>
                                         <td>{user.ID_number}</td>
                                         <td>{user.Department}</td>
                                         <td><button onClick={() => deleteUser2(user.ID_number)}>Delete</button></td>
-                                        <td><button onClick={(index) => {sendUser(users2[index])}}
+                                        <td><button onClick={() => {sendUser(index, user.ID_number)}}
                                             disabled={isDisabledButton(index)}
-                                        >Send</button></td>
+                                        >Send</button></td><td><button onClick={() => {sendUser2(index, user.ID_number)}}
+                                        
+                                    >Send</button></td>
                                     </tr>
                                 </tbody>
                             )
