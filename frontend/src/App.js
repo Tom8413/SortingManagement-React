@@ -75,71 +75,54 @@ function App() {
   }, [setUsers, setUsers2]);
 
 
-  const sendUser = async(index, ID_number) => {
+  const sendUser = async (index) => {
 
     const data = users2[index];
- 
+
     await axios.post("http://localhost:8000/create-employee", data)
       .then((response) => {
         console.log(response);
-        
+
       })
-      .catch ((error) => {
-      console.log(error);
-    })
+      .catch((error) => {
+        console.log(error);
+      })
 
-     
-  
-    // await axios.patch(`http://localhost:8000/patch_employee2/${ID_number}`, data.DisabledOption = false)
-    // .then((response) => {
-    //   console.log(response.data);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // }); 
+    await axios.get("http://localhost:8000/show-employee")
+      .then((response) => {
+        console.log(response);
+        setUsers(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    };
 
+const route = createBrowserRouter([
+  {
+    path: "/",
+    element: <ShowUser users={users} setUsers={setUsers} deleteUser={deleteUser} />
 
-  }
-  const sendUser2 = async(index, ID_number) => {
+  },
+  {
+    path: "/addUser",
+    element: <AddUser users={users} setUsers={setUsers} setUsers2={setUsers2} />
+  },
+  {
+    path: "/userList",
+    element: <UserList users2={users2} setUsers2={setUsers2} deleteUser2={deleteUser2} sendUser={sendUser} users={users} />
+  },
+  {
+    path: "/adduserToDataBase",
+    element: <AdduserToDataBase />
+  },
+]);
 
-    const data = users2[index].DisabledOption;
-  
-    await axios.patch(`http://localhost:8000/patch_employee2/${ID_number}`, {DisabledOption: !data}, )
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    }); 
-
-
-  }
- 
-  const route = createBrowserRouter([
-    {
-      path: "/",
-      element: <ShowUser users={users} setUsers={setUsers} deleteUser={deleteUser} />
-
-    },
-    {
-      path: "/addUser",
-      element: <AddUser users={users} setUsers={setUsers} setUsers2={setUsers2}/>
-    },
-    {
-      path: "/userList",
-      element: <UserList users2={users2} setUsers2={setUsers2} deleteUser2={deleteUser2} sendUser={sendUser} sendUser2={sendUser2} users={users}/>
-    },
-    {
-      path: "/adduserToDataBase",
-      element: <AdduserToDataBase />
-    },
-  ]);
-
-  return (
-    <div className="App">
-      <RouterProvider router={route}></RouterProvider>
-    </div>
-  );
+return (
+  <div className="App">
+    <RouterProvider router={route}></RouterProvider>
+  </div>
+);
 }
 
 export default App;
