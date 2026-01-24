@@ -18,10 +18,10 @@ const employeesSchema = new Schema({
         type: String,
         Required: true
     },
-    DisabledOption: {
-        type: Boolean,
-        Required: true
-    }
+    // DisabledOption: {
+    //     type: Boolean,
+    //     Required: true
+    // }
 }, {timestamps: true});
 
 const Employees2 = mongoose.model('Employee2', employeesSchema);
