@@ -40,9 +40,7 @@ export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser, send
         const condition = users.filter((user) => user.ID_number === users2[index].ID_number);
         if (condition.length !== 0 || users.length > 7) {
             return true;
-        } else {
-            //users2[index].DisabledOption = false;
-        };
+        } 
 
     };
 
@@ -89,9 +87,7 @@ export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser, send
                                         <td><button onClick={() => deleteUser2(user.ID_number)}>Delete</button></td>
                                         <td><button onClick={() => {sendUser(index, user.ID_number)}}
                                             disabled={isDisabledButton(index)}
-                                        >Send</button></td><td><button onClick={() => {sendUser2(index, user.ID_number)}}
-                                        
-                                    >Send</button></td>
+                                        >Send</button></td>
                                     </tr>
                                 </tbody>
                             )
