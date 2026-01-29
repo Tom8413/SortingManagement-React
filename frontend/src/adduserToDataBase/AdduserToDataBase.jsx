@@ -11,7 +11,6 @@ export const AddUser = () => {
   const [last_name, setLast_name] = useState('');
   const [ID_number, setID_number] = useState('');
   const [Department, setDepartment] = useState('NCP');
-  const [DisabledOption] = useState(true);
   const navigate = useNavigate();
 
 
@@ -29,8 +28,7 @@ export const AddUser = () => {
       first_name: first_name,
       last_name: last_name,
       ID_number: ID_number,
-      Department: Department,
-      DisabledOption: DisabledOption,
+      Department: Department
     };
 
     await axios.post("http://localhost:8000/create-employee2", data)
