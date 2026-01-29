@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 
-export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser, sendUser2 }) => {
+export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser, sendIndex}) => {
 
     const [filterText, setFilterText] = useState("");
     const navigate = useNavigate();
@@ -76,16 +76,16 @@ export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser, send
                                 <th>Send User to Department</th>
                             </tr>
                         </tbody>
-                        {filteredUser.map((user, index) => {
+                        {filteredUser.map((user, index ) => {
                             return (
-                                <tbody key={index}>
+                                <tbody key={index={sendIndex}}>
                                     <tr >
                                         <td>{user.first_name}</td>
                                         <td>{user.last_name}</td>
                                         <td>{user.ID_number}</td>
                                         <td>{user.Department}</td>
                                         <td><button onClick={() => deleteUser2(user.ID_number)}>Delete</button></td>
-                                        <td><button onClick={() => {sendUser(index, user.ID_number)}}
+                                        <td><button onClick={() => {sendUser(index)}}
                                             disabled={isDisabledButton(index)}
                                         >Send</button></td>
                                     </tr>
