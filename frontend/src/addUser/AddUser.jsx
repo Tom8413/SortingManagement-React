@@ -11,14 +11,17 @@ export const AddUser = (props) => {
   const [last_name, setLast_name] = useState('');
   const [ID_number, setID_number] = useState('');
   const [Department, setDepartment] = useState('NCP');
-  const [DisabledOption] = useState(true);
   const navigate = useNavigate();
 
+console.log(props.users2[props.index].ID_number)
+  //const conditionButton = props.users.filter((user) => user.ID_number === props.users2[props.index].ID_number)
 
   const isFromValid = () => {
     return first_name.length >= 3 &&
       last_name.length >= 3 &&
-      ID_number.length >= 7
+      ID_number.length >= 7 
+      //conditionButton.length !== 0
+
   }
 
   const handleSubmit = async (event) => {
@@ -29,11 +32,12 @@ export const AddUser = (props) => {
       first_name: first_name,
       last_name: last_name,
       ID_number: ID_number,
-      Department: Department,
-      DisabledOption: DisabledOption
+      Department: Department
     };
 
     let condition = props.users.filter((user) => (user.ID_number) === (event.target.ID_number.value));
+    //let condition2 = props.users.filter((user) => (user.ID_number) === (props.users2[index].ID_number));
+
 
     if (condition.length === 0) {
 
