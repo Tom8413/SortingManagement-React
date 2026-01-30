@@ -24,6 +24,7 @@ export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser, send
         fetchData();
          
     }, [setUsers2]);
+  
 
 
     const handleFilterChange = (event) => {
@@ -76,9 +77,9 @@ export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser, send
                                 <th>Send User to Department</th>
                             </tr>
                         </tbody>
-                        {filteredUser.map((user, index ) => {
+                        {filteredUser.map((user, index) => {
                             return (
-                                <tbody key={index={sendIndex}}>
+                                <tbody key={index}>
                                     <tr >
                                         <td>{user.first_name}</td>
                                         <td>{user.last_name}</td>
