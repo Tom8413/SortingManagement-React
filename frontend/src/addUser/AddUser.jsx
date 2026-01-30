@@ -13,7 +13,7 @@ export const AddUser = (props) => {
   const [Department, setDepartment] = useState('NCP');
   const navigate = useNavigate();
 
-console.log(props.users2[props.index].ID_number)
+
   //const conditionButton = props.users.filter((user) => user.ID_number === props.users2[props.index].ID_number)
 
   const isFromValid = () => {
@@ -34,10 +34,9 @@ console.log(props.users2[props.index].ID_number)
       ID_number: ID_number,
       Department: Department
     };
-
+    
     let condition = props.users.filter((user) => (user.ID_number) === (event.target.ID_number.value));
-    //let condition2 = props.users.filter((user) => (user.ID_number) === (props.users2[index].ID_number));
-
+    let condition2 = props.users2.filter((user)=> user.ID_number === (event.target.ID_number.value));
 
     if (condition.length === 0) {
 
@@ -55,6 +54,7 @@ console.log(props.users2[props.index].ID_number)
       } else {
         toast.error("You cannot add more than nine employees", { position: "top-right" });
       }
+      if (condition2.length === 0) {
 
       await axios.post("http://localhost:8000/create-employee2", data)
         .then((response2) => {
@@ -65,12 +65,13 @@ console.log(props.users2[props.index].ID_number)
         .catch((error) => {
           console.log(error);
         })
+      } else {
+        toast.error("User already exist in DataBase", { position: "top-right" });
+      }
 
     }
     else {
       toast.error("User already exist in Department", { position: "top-right" });
-      toast.error("User already exist in DataBase", { position: "top-right" });
-
     }
   }
 
