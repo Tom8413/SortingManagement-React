@@ -19,7 +19,7 @@ function App() {
     setIndex(index)
   }, [index]);
 
-  console.log(index)
+  //console.log(index)
 
   const deleteUser = async (ID_number) => {
     await axios.delete(`http://localhost:8000/delete-employee/${ID_number}`)
