@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 
-export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser, sendIndex}) => {
+export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser}) => {
 
     const [filterText, setFilterText] = useState("");
     const navigate = useNavigate();
