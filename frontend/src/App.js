@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AddUser from './addUser/AddUser';
 import UserList from './userList/UserList';
 import AdduserToDataBase from './adduserToDataBase/AdduserToDataBase'
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import axios from 'axios';
 import toast from "react-hot-toast";
 import { useEffect } from 'react';
@@ -13,13 +13,6 @@ function App() {
 
   const [users, setUsers] = useState([]);
   const [users2, setUsers2] = useState([]);
-  const [index, setIndex] = useState([]);
-
-  const sendIndex = useCallback(() => {
-    setIndex(index)
-  }, [index]);
-
-  //console.log(index)
 
   const deleteUser = async (ID_number) => {
     await axios.delete(`http://localhost:8000/delete-employee/${ID_number}`)
@@ -83,9 +76,7 @@ function App() {
 
   const sendUser = async (index) => {
 
-    setIndex(index);
     const data = users2[index];
-    //console.log(index)
 
     await axios.post("http://localhost:8000/create-employee", data)
       .then((response) => {
@@ -115,15 +106,15 @@ function App() {
     },
     {
       path: "/addUser",
-      element: <AddUser users={users} setUsers={setUsers} setUsers2={setUsers2} index={index} setIndex={setIndex} users2={users2} />
+      element: <AddUser users={users} setUsers={setUsers} setUsers2={setUsers2} users2={users2} />
     },
     {
       path: "/userList",
-      element: <UserList users2={users2} setUsers2={setUsers2} deleteUser2={deleteUser2} sendUser={sendUser} users={users} sendIndex={sendIndex} />
+      element: <UserList users2={users2} setUsers2={setUsers2} deleteUser2={deleteUser2} sendUser={sendUser} users={users} />
     },
     {
       path: "/adduserToDataBase",
-      element: <AdduserToDataBase />
+      element: <AdduserToDataBase users={users}/>
     },
   ]);
 
