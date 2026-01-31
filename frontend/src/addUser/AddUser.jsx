@@ -14,13 +14,10 @@ export const AddUser = (props) => {
   const navigate = useNavigate();
 
 
-  //const conditionButton = props.users.filter((user) => user.ID_number === props.users2[props.index].ID_number)
-
   const isFromValid = () => {
     return first_name.length >= 3 &&
       last_name.length >= 3 &&
       ID_number.length >= 7
-    //conditionButton.length !== 0
 
   }
 
