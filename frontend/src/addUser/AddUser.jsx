@@ -19,8 +19,8 @@ export const AddUser = (props) => {
   const isFromValid = () => {
     return first_name.length >= 3 &&
       last_name.length >= 3 &&
-      ID_number.length >= 7 
-      //conditionButton.length !== 0
+      ID_number.length >= 7
+    //conditionButton.length !== 0
 
   }
 
@@ -34,12 +34,11 @@ export const AddUser = (props) => {
       ID_number: ID_number,
       Department: Department
     };
-    
+
     let condition = props.users.filter((user) => (user.ID_number) === (event.target.ID_number.value));
-    let condition2 = props.users2.filter((user)=> user.ID_number === (event.target.ID_number.value));
+    let condition2 = props.users2.filter((user) => user.ID_number === (event.target.ID_number.value));
 
-    if (condition.length === 0) {
-
+      if (condition.length === 0 && condition2.length === 0) {
       if (props.users.length < 8) {
         await axios.post("http://localhost:8000/create-employee", data)
           .then((response) => {
@@ -54,7 +53,24 @@ export const AddUser = (props) => {
       } else {
         toast.error("You cannot add more than nine employees", { position: "top-right" });
       }
-      if (condition2.length === 0) {
+      await axios.post("http://localhost:8000/create-employee2", data)
+        .then((response2) => {
+          console.log(response2.data);
+          toast.success("User " + response2.data.first_name + " created in database successful!", { position: "top-right" });
+          navigate("/");
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+
+    } else 
+    if (condition.length !== 0 && condition2.lenght !== 0) {
+
+      toast.error("User already exist in Department", { position: "top-right" });
+      toast.error("User already exist in DataBase", { position: "top-right" });
+
+    } else if (condition.length !== 0 && condition2.lenght === 0) {
+      toast.error("User already exist in Department", { position: "top-right" });
 
       await axios.post("http://localhost:8000/create-employee2", data)
         .then((response2) => {
@@ -65,13 +81,21 @@ export const AddUser = (props) => {
         .catch((error) => {
           console.log(error);
         })
-      } else {
-        toast.error("User already exist in DataBase", { position: "top-right" });
-      }
 
-    }
-    else {
-      toast.error("User already exist in Department", { position: "top-right" });
+    } else if (condition.length === 0 && condition2.length !== 0) {
+      toast.error("User already exist in DataBase", { position: "top-right" });
+
+      if (props.users.length < 8) {
+        await axios.post("http://localhost:8000/create-employee", data)
+          .then((response) => {
+            console.log(response.data);
+            toast.success("User " + response.data.first_name + " created successful!", { position: "top-right" });
+            navigate("/");
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+      }
     }
   }
 
