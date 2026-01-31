@@ -5,7 +5,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast'
 
 
-export const AddUser = () => {
+export const AdduserToDataBase = (props) => {
 
   const [first_name, setFirst_name] = useState('');
   const [last_name, setLast_name] = useState('');
@@ -31,6 +31,10 @@ export const AddUser = () => {
       Department: Department
     };
 
+    let condition = props.users.filter((user) => (user.ID_number) === (event.target.ID_number.value));
+
+    condition.length === 0 ? 
+
     await axios.post("http://localhost:8000/create-employee2", data)
       .then((response2) => {
         console.log(response2.data);
@@ -40,7 +44,9 @@ export const AddUser = () => {
       .catch((error) => {
         console.log(error);
       })
+      : toast.error("User already exist in DataBase", { position: "top-right" });
   }
+  
 
   return (
     <div className="backdrop">
@@ -101,4 +107,4 @@ export const AddUser = () => {
   )
 }
 
-export default AddUser;
+export default AdduserToDataBase;
