@@ -28,15 +28,19 @@ function App() {
 
   const deleteUser2 = async (ID_number) => {
 
-    await axios.delete(`http://localhost:8000/delete-employee/${ID_number}`)
-      .then((response) => {
-        console.log(response)
-        setUsers((prevUser) => prevUser.filter((user) => user.ID_number !== ID_number));
-        toast.success("User " + response.data.first_name + " deleted successful!", { position: "top-right" });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const conditionToDelete = users.filter((user) => user.ID_number === ID_number);
+
+    if (conditionToDelete.length !== 0) {
+      await axios.delete(`http://localhost:8000/delete-employee/${ID_number}`)
+        .then((response) => {
+          console.log(response)
+          setUsers((prevUser) => prevUser.filter((user) => user.ID_number !== ID_number));
+          toast.success("User " + response.data.first_name + " deleted successful!", { position: "top-right" });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
 
     await axios.delete(`http://localhost:8000/delete-employee2/${ID_number}`)
       .then((response2) => {
@@ -48,7 +52,6 @@ function App() {
         console.log(error);
       })
   };
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -114,7 +117,7 @@ function App() {
     },
     {
       path: "/adduserToDataBase",
-      element: <AdduserToDataBase users={users}/>
+      element: <AdduserToDataBase users={users} />
     },
   ]);
 
