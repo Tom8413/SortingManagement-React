@@ -1,9 +1,9 @@
 import './App.css';
-import ShowUser from './getUser/ShowUser';
+import ShowUser from './user/getUser/ShowUser';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import AddUser from './addUser/AddUser';
-import UserList from './userList/UserList';
-import AdduserToDataBase from './adduserToDataBase/AdduserToDataBase'
+import AddUser from './user/addUser/AddUser';
+import UserList from './user/userList/UserList';
+import AdduserToDataBase from './user/adduserToDataBase/AdduserToDataBase'
 import React, { useState } from "react";
 import axios from 'axios';
 import toast from "react-hot-toast";
