@@ -52,7 +52,7 @@ export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser}) => 
                     <Link to="/">
                         Main Page
                     </Link>
-                    <Box display='flex' justifyContent="flex-end">
+                    <Box>
                         <TextField
                             width="40%"
                             label="Search User"
