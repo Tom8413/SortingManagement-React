@@ -24,19 +24,19 @@ const ShowUser = ({ users, setUsers, deleteUser }) => {
 
     return (
         <>
-            <div className="horizontal">
-                <div>
-                    <div className="navbarbuttonContainer">
-                    <Link to="/userlist">
-                        Database Employee
-                    </Link>
-                    <div  className="buttonContainer">
+            <div className="horizontalContainer">
+                <div className="navbarbutton">
+                    <div className="link">
+                        <Link to="/userlist">
+                            Database Employee
+                        </Link>
+                    </div>
+
+                    <div className="buttonContainer">
                         <button type="button" onClick={() => navigate("/addUser")}> Add User</button>
                     </div>
-                    </div>
-
-
                 </div>
+
                 <div className="departmentData">
                     {users.map((user, index) => {
                         if (index < 8) {
