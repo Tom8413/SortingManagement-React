@@ -1,10 +1,10 @@
 form {
-    max-width: 530px;
-    margin: 130px auto;
+    width: 35%;
+    height: 80%;
     background: white;
-    text-align: left;
-    padding: 40px;
     border-radius: 30px;
+    padding: 50%;
+
   }
   label {
     color: #aaa;
@@ -33,9 +33,10 @@ form {
     min-height: 100vh;
     box-sizing: border-box;
     display: flex;
-    flex-direction: columne;
+    flex-direction: row;
     flex-wrap: no-warp;
     background-color: gray;
+
   }
   .NewUser {
     margin: 15px 0px 20px 0px;
