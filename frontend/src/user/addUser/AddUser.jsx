@@ -35,7 +35,7 @@ export const AddUser = (props) => {
     let condition = props.users.filter((user) => (user.ID_number) === (event.target.ID_number.value));
     let condition2 = props.users2.filter((user) => user.ID_number === (event.target.ID_number.value));
 
-      if (condition.length === 0 && condition2.length === 0) {
+    if (condition.length === 0 && condition2.length === 0) {
       if (props.users.length < 8) {
         await axios.post("http://localhost:8000/create-employee", data)
           .then((response) => {
@@ -60,40 +60,40 @@ export const AddUser = (props) => {
           console.log(error);
         })
 
-    } else 
-    if (condition.length !== 0 && condition2.lenght !== 0) {
+    } else
+      if (condition.length !== 0 && condition2.lenght !== 0) {
 
-      toast.error("User already exist in Department", { position: "top-right" });
-      toast.error("User already exist in DataBase", { position: "top-right" });
+        toast.error("User already exist in Department", { position: "top-right" });
+        toast.error("User already exist in DataBase", { position: "top-right" });
 
-    } else if (condition.length !== 0 && condition2.lenght === 0) {
-      toast.error("User already exist in Department", { position: "top-right" });
+      } else if (condition.length !== 0 && condition2.lenght === 0) {
+        toast.error("User already exist in Department", { position: "top-right" });
 
-      await axios.post("http://localhost:8000/create-employee2", data)
-        .then((response2) => {
-          console.log(response2.data);
-          toast.success("User " + response2.data.first_name + " created in database successful!", { position: "top-right" });
-          navigate("/");
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-
-    } else if (condition.length === 0 && condition2.length !== 0) {
-      toast.error("User already exist in DataBase", { position: "top-right" });
-
-      if (props.users.length < 8) {
-        await axios.post("http://localhost:8000/create-employee", data)
-          .then((response) => {
-            console.log(response.data);
-            toast.success("User " + response.data.first_name + " created successful!", { position: "top-right" });
+        await axios.post("http://localhost:8000/create-employee2", data)
+          .then((response2) => {
+            console.log(response2.data);
+            toast.success("User " + response2.data.first_name + " created in database successful!", { position: "top-right" });
             navigate("/");
           })
           .catch((error) => {
             console.log(error);
           })
+
+      } else if (condition.length === 0 && condition2.length !== 0) {
+        toast.error("User already exist in DataBase", { position: "top-right" });
+
+        if (props.users.length < 8) {
+          await axios.post("http://localhost:8000/create-employee", data)
+            .then((response) => {
+              console.log(response.data);
+              toast.success("User " + response.data.first_name + " created successful!", { position: "top-right" });
+              navigate("/");
+            })
+            .catch((error) => {
+              console.log(error);
+            })
+        }
       }
-    }
   }
 
   return (
@@ -101,7 +101,10 @@ export const AddUser = (props) => {
 
       <form onSubmit={handleSubmit}>
         <h3 className='NewUser'>Add New user</h3>
-        <label htmlFor='first_name'>First Name:</label>
+        <div className='labelClass'>
+          <label htmlFor='first_name'>First Name:</label>
+        </div>
+
         <input type="text"
           id='first_name'
           name='first_name'
@@ -111,7 +114,9 @@ export const AddUser = (props) => {
           onChange={(event) => setFirst_name(event.target.value.replace(/[^a-z]/gi, ''))}
         />
 
-        <label htmlFor='last_name'>Last Name:</label>
+        <div className='labelClass'>
+          <label htmlFor='last_name'>Last Name:</label>
+        </div>
         <input type="text"
           id='last_name'
           name='lastName'
@@ -121,7 +126,9 @@ export const AddUser = (props) => {
           onChange={(event) => setLast_name(event.target.value.replace(/[^a-z]/gi, ''))}
         />
 
-        <label htmlFor='ID_number'>ID_number:</label>
+        <div className='labelClass'>
+          <label htmlFor='ID_number'>ID_number:</label>
+        </div>
         <input type="text"
           maxLength={8}
           id='ID_number'
@@ -131,9 +138,12 @@ export const AddUser = (props) => {
           onChange={(event) => setID_number(event.target.value.replace(/[^0-9]/gi, ''))}
         />
 
-        <label htmlFor='Department'>Department: </label>
-        <select
+        <div className='labelClass'>
+          <label htmlFor='Department'>Department: </label>
+        </div>
 
+        <select
+          className='select'
           value={Department}
           onChange={(event) => setDepartment(event.target.value)}>
           <option value="NCP">NCP</option>
