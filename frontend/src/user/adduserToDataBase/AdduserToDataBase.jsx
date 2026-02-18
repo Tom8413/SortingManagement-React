@@ -33,27 +33,31 @@ export const AdduserToDataBase = (props) => {
 
     let condition = props.users.filter((user) => (user.ID_number) === (event.target.ID_number.value));
 
-    condition.length === 0 ? 
+    condition.length === 0 ?
 
-    await axios.post("http://localhost:8000/create-employee2", data)
-      .then((response2) => {
-        console.log(response2.data);
-        toast.success("User " + response2.data.first_name + " created in database successful!", { position: "top-right" });
-        navigate("/userList");
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+      await axios.post("http://localhost:8000/create-employee2", data)
+        .then((response2) => {
+          console.log(response2.data);
+          toast.success("User " + response2.data.first_name + " created in database successful!", { position: "top-right" });
+          navigate("/userList");
+        })
+        .catch((error) => {
+          console.log(error);
+        })
       : toast.error("User already exist in DataBase", { position: "top-right" });
   }
-  
+
 
   return (
     <div className="backdrop">
 
       <form onSubmit={handleSubmit}>
         <h3 className='NewUser'>Add New user</h3>
-        <label htmlFor='first_name'>First Name:</label>
+
+        <div className='labelClass'>
+          <label htmlFor='first_name'>First Name:</label>
+        </div>
+
         <input type="text"
           id='first_name'
           name='first_name'
@@ -63,7 +67,10 @@ export const AdduserToDataBase = (props) => {
           onChange={(event) => setFirst_name(event.target.value.replace(/[^a-z]/gi, ''))}
         />
 
-        <label htmlFor='last_name'>Last Name:</label>
+        <div className='labelClass'>
+          <label htmlFor='last_name'>Last Name:</label>
+        </div>
+
         <input type="text"
           id='last_name'
           name='lastName'
@@ -73,7 +80,10 @@ export const AdduserToDataBase = (props) => {
           onChange={(event) => setLast_name(event.target.value.replace(/[^a-z]/gi, ''))}
         />
 
-        <label htmlFor='ID_number'>ID_number:</label>
+        <div className='labelClass'>
+          <label htmlFor='ID_number'>ID_number:</label>
+        </div>
+
         <input type="text"
           maxLength={8}
           id='ID_number'
@@ -83,9 +93,12 @@ export const AdduserToDataBase = (props) => {
           onChange={(event) => setID_number(event.target.value.replace(/[^0-9]/gi, ''))}
         />
 
-        <label htmlFor='Department'>Department: </label>
-        <select
+        <div className='labelClass'>
+          <label htmlFor='Department'>Department: </label>
+        </div>
 
+        <select
+          className='select'
           value={Department}
           onChange={(event) => setDepartment(event.target.value)}>
           <option value="NCP">NCP</option>
@@ -99,9 +112,9 @@ export const AdduserToDataBase = (props) => {
           Submit
         </button>
 
-          <button type='button' onClick={() => navigate("/userList")}>
-            Cancel
-          </button>
+        <button type='button' onClick={() => navigate("/userList")}>
+          Cancel
+        </button>
       </form>
     </div>
   )
