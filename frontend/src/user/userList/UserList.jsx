@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 
+
 export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser}) => {
 
     const [filterText, setFilterText] = useState("");
@@ -58,8 +59,8 @@ export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser}) => 
                             label="Search User"
                             variant='outlined'
                             value={filterText}
-                            onChange={handleFilterChange}>
-
+                            onChange={handleFilterChange}
+                            placeholder='Search User'>
                         </TextField>
 
                     </Box>
@@ -98,6 +99,7 @@ export const UserList = ({ users, users2, setUsers2, deleteUser2, sendUser}) => 
                     <div className="tableButtonContainer">
                         <button type='button' onClick={() => navigate("/adduserToDataBase")}>Add user</button>
                     </div>
+    
                 </div>
             </div>
         </>
