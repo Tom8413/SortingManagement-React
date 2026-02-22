@@ -3,6 +3,8 @@ import axios from "axios";
 import "../getUser/showUser.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import AddCircleOutlineSharpIcon from '@mui/icons-material/AddCircleOutlineSharp';
+import {Button} from '@mui/material';
 
 const ShowUser = ({ users, setUsers, deleteUser }) => {
 
@@ -42,7 +44,8 @@ const ShowUser = ({ users, setUsers, deleteUser }) => {
                         if (index < 8) {
                             return (
                                 <div className="block" key={index}>
-                                    <div>First name: {user.first_name}</div>
+                                    <Button variant = 'contained' sx={{m:0.01}} startIcon={<AddCircleOutlineSharpIcon/>}>Add Palette</Button>
+                                    <div className="IconButton">First name: {user.first_name}</div>
                                     <div>Last name: {user.last_name}</div>
                                     <div>ID number: {user.ID_number}</div>
                                     <div>Department: {user.Department}</div>
