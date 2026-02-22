@@ -89,7 +89,7 @@ export const AdduserToDataBase = (props) => {
           id='ID_number'
           name='IDNumber'
           value={ID_number}
-          placeholder='ID_number'
+          placeholder='Enter ID_number'
           onChange={(event) => setID_number(event.target.value.replace(/[^0-9]/gi, ''))}
         />
 
