@@ -24,13 +24,13 @@ export const AddUser = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-
     const data = {
       first_name: first_name,
       last_name: last_name,
       ID_number: ID_number,
       Department: Department
     };
+    console.log(event.target.first_name.value);
 
     let condition = props.users.filter((user) => (user.ID_number) === (event.target.ID_number.value));
     let condition2 = props.users2.filter((user) => user.ID_number === (event.target.ID_number.value));
