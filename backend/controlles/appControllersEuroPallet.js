@@ -24,10 +24,10 @@ const create_EuroPallet = (req, res) => {
 };
 
 const delete_EuroPallet = (req, res) => {
-    const id = req.params.id;
-    EuroPallets.findByIdAndDelete(id)
+    const id_KeyPallet = req.params.Id_KeyPallet;
+    EuroPallets.findByIdAndDelete({Id_KeyPallet: id_KeyPallet})
     .then(result => {
-        res.status(200);
+        res.status(200).send(resut)
         console.log(result);
     })
     .catch(err => {
