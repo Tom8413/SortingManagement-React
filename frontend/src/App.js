@@ -3,7 +3,10 @@ import ShowUser from './user/getUser/ShowUser';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AddUser from './user/addUser/AddUser';
 import UserList from './user/userList/UserList';
-import AdduserToDataBase from './user/adduserToDataBase/AdduserToDataBase'
+import AdduserToDataBase from './user/adduserToDataBase/AdduserToDataBase';
+import AddPalett from "./Palett/addPalett/AddPalett";
+import GetPalett from "./Palett/getPalett/GetPalett";
+import DeletePalett from "./Palett/deletePalett/DeletePalett";
 import React, { useState } from "react";
 import axios from 'axios';
 import toast from "react-hot-toast";
@@ -13,6 +16,7 @@ function App() {
 
   const [users, setUsers] = useState([]);
   const [users2, setUsers2] = useState([]);
+  const[sendIndexPalett, setsendIndexPalett] = useState([]);
 
   const deleteUser = async (ID_number) => {
     await axios.delete(`http://localhost:8000/delete-employee/${ID_number}`)
@@ -100,11 +104,10 @@ function App() {
       });
   };
 
-
   const route = createBrowserRouter([
     {
       path: "/",
-      element: <ShowUser users={users} setUsers={setUsers} deleteUser={deleteUser} />
+      element: <ShowUser users={users} setUsers={setUsers} deleteUser={deleteUser} setsendIndexPalett={setsendIndexPalett}/>
 
     },
     {
@@ -119,6 +122,19 @@ function App() {
       path: "/adduserToDataBase",
       element: <AdduserToDataBase users={users} />
     },
+    {
+      path: "/addPalett",
+      element: <AddPalett users={users} setUsers={setUsers} setUsers2={setUsers2} users2={users2} sendIndexPalett={sendIndexPalett}/>
+    },
+    {
+      path: "/getPalett",
+      element: <GetPalett/>
+    },
+    {
+      path: "/deletePalett",
+      element: <DeletePalett />
+    }
+
   ]);
 
   return (
