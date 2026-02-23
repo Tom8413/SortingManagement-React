@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const euroPalletSchema = new Schema({
-    ID_Worker: {
+    ID_number: {
         type: String,
         Required: 'Please enter'
     },
