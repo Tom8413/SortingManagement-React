@@ -19,11 +19,7 @@ router.get('/show-EuroPallet', appControllersEuroPallet.EuroPallet_details);
 
 router.post('/createEuroPallet', appControllersEuroPallet.create_EuroPallet);
 
-router.delete('/delete-EuroPallet/:id', appControllersEuroPallet.delete_EuroPallet);
-
-// router.patch('/patch_employee/:ID_number', appControllersEmployee.patch_employee);
-
-// router.patch('/patch_employee2/:ID_number', appControllersEmployee.patch_employee2);
+router.delete('/delete-EuroPallet/:Id_KeyPallet', appControllersEuroPallet.delete_EuroPallet);
 
 
 module.exports = router;
