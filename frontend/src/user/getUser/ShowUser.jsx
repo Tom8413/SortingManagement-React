@@ -63,6 +63,10 @@ const ShowUser = ({ users, setUsers, deleteUser, setsendIndexPalett}) => {
                         }
                     })}
                 </div>
+                <div className="departamentPalettData">
+            
+                     
+                </div>
 
                 <div>
                 </div>
