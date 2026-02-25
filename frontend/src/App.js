@@ -16,6 +16,8 @@ function App() {
 
   const [users, setUsers] = useState([]);
   const [users2, setUsers2] = useState([]);
+  const [Palett, setPalett] = useState([]);
+  const [Palett2, setPalett2] = useState([]);
   const[sendIndexPalett, setsendIndexPalett] = useState([]);
 
   const deleteUser = async (ID_number) => {
@@ -76,9 +78,17 @@ function App() {
 
       }
     };
+    const fetchData3 = async () => {
+      try {
+        const response4 = await axios.get("http://localhost:8000/show-EuroPallet");
+        setPalett(response4.data);
+      }catch (error) {
+        console.log(error);
+      }
+    };
     fetchData();
     fetchData2();
-  }, [setUsers, setUsers2]);
+  }, [setUsers, setUsers2, setPalett]);
 
 
   const sendUser = async (index) => {
