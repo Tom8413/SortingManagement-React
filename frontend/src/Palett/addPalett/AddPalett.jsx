@@ -10,6 +10,9 @@ export const AddPalett = (props) => {
   const [KeyPallet, setKeyPallet] = useState('');
   const [Quantity, setQuantity] = useState('');
   const [Department, setDepartment] = useState('NCP');
+  const [Nestet, setNestet] = useState('');
+  const [Location, setLocation] = useState("");
+
   const navigate = useNavigate();
 
 
@@ -18,7 +21,8 @@ export const AddPalett = (props) => {
     Quantity.length >= 7
 
   };
-console.log(props.sendIndexPalett);
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -27,7 +31,10 @@ console.log(props.sendIndexPalett);
       ID_number: props.users[props.sendIndexPalett].ID_number,
       KeyPallet: KeyPallet,
       Quantity: Quantity,
-      Department: Department
+      Nestet: Nestet,
+      Department: Department,
+      Location: Location
+
     };
 
     let condition = props.users.filter((user) => (user.ID_number) === (event.target.ID_number.value));
@@ -38,7 +45,7 @@ console.log(props.sendIndexPalett);
         await axios.post("http://localhost:8000/create-employee", data)
           .then((response) => {
             console.log(response.data);
-            toast.success("User " + response.data.last_name + " created successful!", { position: "top-right" });
+            toast.success("Palett " + response.data.KeyPallet+ " created successful!", { position: "top-right" });
             navigate("/");
           })
           .catch((error) => {
@@ -51,7 +58,7 @@ console.log(props.sendIndexPalett);
       await axios.post("http://localhost:8000/create-employee2", data)
         .then((response2) => {
           console.log(response2.data);
-          toast.success("User " + response2.data.last_name + " created in database successful!", { position: "top-right" });
+          toast.success("Palett " + response2.KeyPalett + " created in database successful!", { position: "top-right" });
           navigate("/");
         })
         .catch((error) => {
@@ -61,16 +68,16 @@ console.log(props.sendIndexPalett);
     } else
       if (condition.length !== 0 && condition2.lenght !== 0) {
 
-        toast.error("User already exist in Department", { position: "top-right" });
-        toast.error("User already exist in DataBase", { position: "top-right" });
+        toast.error("Palett already exist in Department", { position: "top-right" });
+        toast.error("Palett already exist in DataBase", { position: "top-right" });
 
       } else if (condition.length !== 0 && condition2.lenght === 0) {
-        toast.error("User already exist in Department", { position: "top-right" });
+        toast.error("Palett already exist in Department", { position: "top-right" });
 
         await axios.post("http://localhost:8000/create-employee2", data)
           .then((response2) => {
             console.log(response2.data);
-            toast.success("User " + response2.data.last_name + " created in database successful!", { position: "top-right" });
+            toast.success("Palett " + response2.KayPalett + " created in database successful!", { position: "top-right" });
             navigate("/");
           })
           .catch((error) => {
@@ -78,13 +85,13 @@ console.log(props.sendIndexPalett);
           })
 
       } else if (condition.length === 0 && condition2.length !== 0) {
-        toast.error("User already exist in DataBase", { position: "top-right" });
+        toast.error("Palett already exist in DataBase", { position: "top-right" });
 
         if (props.users.length < 8) {
           await axios.post("http://localhost:8000/create-employee", data)
             .then((response) => {
               console.log(response.data);
-              toast.success("User " + response.data.last_name + " created successful!", { position: "top-right" });
+              toast.success("Palett " + response.data.KeyPalett + " created successful!", { position: "top-right" });
               navigate("/");
             })
             .catch((error) => {
@@ -100,7 +107,7 @@ console.log(props.sendIndexPalett);
       <form onSubmit={handleSubmit}>
         <h3 className='NewPalett'>Add New Palett</h3>
         <div className='labelClass'>
-          <h3 clsssName="ID_numberh3" >ID_Number: {props.users[props.sendIndexPalett].ID_number}</h3>
+          <h3 className="ID_numberh3" >ID_Number: {props.users[props.sendIndexPalett].ID_number}</h3>
         </div>
 
         <div className='labelClass'>
@@ -128,8 +135,28 @@ console.log(props.sendIndexPalett);
         />
 
         <div className='labelClass'>
-          <label htmlFor='Department'>Department: </label>
+          <label htmlFor='Nestet'>Location:</label>
         </div>
+        <input type="text"
+          maxLength={8}
+          id='Location'
+          name='NesLocationtet'
+          value={Location}
+          placeholder='Enter Location'
+          onChange={(event) => setLocation(event.target.value.replace(/[^0-9]/gi, ''))}
+        />
+
+        <div className='labelClass'>
+          <label htmlFor='Nestet'>Nestet: </label>
+        </div>
+
+        <select
+          className='select'
+          value={Nestet}
+          onChange={(event) => setNestet(event.target.value)}>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
 
         <select
           className='select'
