@@ -7,11 +7,11 @@ const euroPalletSchema = new Schema({
         Required: 'Please enter'
     },
     KeyPallet: {
-        type: Number,
+        type: String,
         Required: 'Please enter'
     },
     Quantity: {
-        type: Number,
+        type: String,
         Required: 'Please enter'
     },
     Nestet: {
