@@ -37,12 +37,24 @@ export const AddPalett = (props) => {
 
     };
 
+    await axios.post("http://localhost:8000/createEuroPallet", data)
+          .then((response) => {
+            console.log(response.data);
+            toast.success("Palett " + response.data.KeyPallet+ " created successful!", { position: "top-right" });
+            navigate("/");
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+
+      
+/*
     let condition = props.users.filter((user) => (user.ID_number) === (event.target.ID_number.value));
     let condition2 = props.users2.filter((user) => user.ID_number === (event.target.ID_number.value));
 
     if (condition.length === 0 && condition2.length === 0) {
       if (props.users.length < 8) {
-        await axios.post("http://localhost:8000/create-employee", data)
+        await axios.post("http://localhost:8000/createEuroPallet", data)
           .then((response) => {
             console.log(response.data);
             toast.success("Palett " + response.data.KeyPallet+ " created successful!", { position: "top-right" });
@@ -99,6 +111,7 @@ export const AddPalett = (props) => {
             })
         }
       }
+      */
   }
 
   return (
