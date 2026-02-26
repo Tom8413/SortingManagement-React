@@ -19,7 +19,7 @@ const create_EuroPallet = (req, res) => {
         })
         .catch((err) => {
             res.status(500);
-            conosle.log(err);
+            console.log(err);
         })
 };
 
