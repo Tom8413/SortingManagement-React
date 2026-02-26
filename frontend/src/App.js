@@ -16,8 +16,8 @@ function App() {
 
   const [users, setUsers] = useState([]);
   const [users2, setUsers2] = useState([]);
-  const [Palett, setPalett] = useState([]);
-  const [Palett2, setPalett2] = useState([]);
+  const [palett, setPalett] = useState([]);
+  const [palett2, setPalett2] = useState([]);
   const[sendIndexPalett, setsendIndexPalett] = useState([]);
 
   const deleteUser = async (ID_number) => {
@@ -88,6 +88,7 @@ function App() {
     };
     fetchData();
     fetchData2();
+    fetchData3();
   }, [setUsers, setUsers2, setPalett]);
 
 
@@ -117,7 +118,7 @@ function App() {
   const route = createBrowserRouter([
     {
       path: "/",
-      element: <ShowUser users={users} setUsers={setUsers} deleteUser={deleteUser} setsendIndexPalett={setsendIndexPalett}/>
+      element: <ShowUser users={users} setUsers={setUsers} palett={palett} setPalett={setPalett} deleteUser={deleteUser} setsendIndexPalett={setsendIndexPalett}/>
 
     },
     {
