@@ -10,7 +10,7 @@ export const AddPalett = (props) => {
   const [KeyPallet, setKeyPallet] = useState('');
   const [Quantity, setQuantity] = useState('');
   const [Department, setDepartment] = useState('NCP');
-  const [Nestet, setNestet] = useState('');
+  const [Nestet, setNestet] = useState('No');
   const [Location, setLocation] = useState("");
 
   const navigate = useNavigate();
@@ -170,6 +170,10 @@ export const AddPalett = (props) => {
           <option value="Yes">Yes</option>
           <option value="No">No</option>
         </select>
+
+        <div className='labelClass'>
+          <label htmlFor='Department'>Department: </label>
+        </div>
 
         <select
           className='select'
