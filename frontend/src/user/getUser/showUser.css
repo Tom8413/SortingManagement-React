@@ -27,7 +27,7 @@
     flex-wrap: no-wrap;
 
   }
-  .departmentData {
+  .departmentData, .departamentPalettData {
     width: 100%;
     box-sizing:  border-box;
     display: flex;
