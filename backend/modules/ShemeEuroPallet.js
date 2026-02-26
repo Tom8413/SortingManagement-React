@@ -18,7 +18,7 @@ const euroPalletSchema = new Schema({
         type: String,
         Required: 'Please enter'
     },
-    Depertment: {
+    Department: {
         type: String,
         Required: 'Please enter'
     },
