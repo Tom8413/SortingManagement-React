@@ -16,6 +16,7 @@ const create_EuroPallet = (req, res) => {
     EuroPallet.save()
         .then((result) => {
             res.status(201).send(result)
+            console.log(req.body);
         })
         .catch((err) => {
             res.status(500);
