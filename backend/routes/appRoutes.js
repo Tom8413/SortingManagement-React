@@ -21,5 +21,7 @@ router.post('/createEuroPallet', appControllersEuroPallet.create_EuroPallet);
 
 router.delete('/delete-EuroPallet/:Id_KeyPallet', appControllersEuroPallet.delete_EuroPallet);
 
+router.delete('/delete-EuroPallet2/:Id_KeyPallet', appControllersEuroPallet.delete_EuroPallet2);
+
 
 module.exports = router;
