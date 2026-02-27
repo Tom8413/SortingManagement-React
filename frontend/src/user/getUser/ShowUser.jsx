@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import AddCircleOutlineSharpIcon from '@mui/icons-material/AddCircleOutlineSharp';
 import {Button} from '@mui/material';
 
-const ShowUser = ({ users, setUsers, palett, setPalett, deleteUser, setsendIndexPalett}) => {
+const ShowUser = ({ users, setUsers, palett, setPalett, deleteUser, setsendIndexPalett, deletePalett}) => {
 
     const navigate = useNavigate();
 
@@ -83,7 +83,9 @@ const ShowUser = ({ users, setUsers, palett, setPalett, deleteUser, setsendIndex
                                     <div>Nestet: {palett.Nestet}</div>
                                     <div>Department: {palett.Department}</div>
                                     <div>Location: {palett.Location}</div>
-                                  
+                                    <button
+                                        onClick={() => deletePalett(palett.ID_number)}
+                                    >Delete</button>
                                 </div>
                             )
                         } else {
