@@ -4,9 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AddUser from './user/addUser/AddUser';
 import UserList from './user/userList/UserList';
 import AdduserToDataBase from './user/adduserToDataBase/AdduserToDataBase';
-import AddPalett from "./Palett/addPalett/AddPalett";
-import GetPalett from "./Palett/getPalett/GetPalett";
-import DeletePalett from "./Palett/deletePalett/DeletePalett";
+import AddPallet from "./Pallet/addPallet/AddPallet";
+import GetPallet from "./Pallet/getPallet/GetPallet";
 import React, { useState } from "react";
 import axios from 'axios';
 import toast from "react-hot-toast";
@@ -16,9 +15,9 @@ function App() {
 
   const [users, setUsers] = useState([]);
   const [users2, setUsers2] = useState([]);
-  const [palett, setPalett] = useState([]);
-  const [palett2, setPalett2] = useState([]);
-  const[sendIndexPalett, setsendIndexPalett] = useState([]);
+  const [pallet, setPallet] = useState([]);
+  const [pallet2, setPallet2] = useState([]);
+  const[sendIndexPallet, setsendIndexPallet] = useState([]);
 
   const deleteUser = async (ID_number) => {
     await axios.delete(`http://localhost:8000/delete-employee/${ID_number}`)
@@ -59,6 +58,45 @@ function App() {
       })
   };
 
+  const deletePallet = async (ID_number) => {
+    await axios.delete(`http://localhost:8000/delete-EuroPallet/${ID_number}`)
+      .then((response) => {
+        console.log(response)
+        setPallet((prevPalett) => prevPalett.filter((palett) => palett.ID_number !== ID_number));
+        toast.success("Palett " + response.data.ID_number + " deleted successful!", { position: "top-right" });
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  };
+
+  const deletePallet2 = async (ID_number) => {
+
+    const conditionToDelete = pallet.filter((pallet) => pallet.ID_number === ID_number);
+
+    if (conditionToDelete.length !== 0) {
+      await axios.delete(`http://localhost:8000/delete-EuroPallet2/${ID_number}`)
+        .then((response) => {
+          console.log(response)
+          setPallet2((prevUser) => prevUser.filter((palett) => palett.ID_number !== ID_number));
+          toast.success("Pallet " + response.data.Id_number + " deleted successful!", { position: "top-right" });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
+    await axios.delete(`http://localhost:8000/delete-employee2/${ID_number}`)
+      .then((response2) => {
+        console.log(response2)
+        setUsers2((prevUser2) => prevUser2.filter((user2) => user2.ID_number !== ID_number));
+        toast.success("User " + response2.data.first_name + " deleted from database successful!", { position: "top-right" });
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -81,7 +119,7 @@ function App() {
     const fetchData3 = async () => {
       try {
         const response4 = await axios.get("http://localhost:8000/show-EuroPallet");
-        setPalett(response4.data);
+        setPallet(response4.data);
       }catch (error) {
         console.log(error);
       }
@@ -89,7 +127,7 @@ function App() {
     fetchData();
     fetchData2();
     fetchData3();
-  }, [setUsers, setUsers2, setPalett]);
+  }, [setUsers, setUsers2, setPallet]);
 
 
   const sendUser = async (index) => {
@@ -115,10 +153,12 @@ function App() {
       });
   };
 
+
+
   const route = createBrowserRouter([
     {
       path: "/",
-      element: <ShowUser users={users} setUsers={setUsers} palett={palett} setPalett={setPalett} deleteUser={deleteUser} setsendIndexPalett={setsendIndexPalett}/>
+      element: <ShowUser users={users} setUsers={setUsers} pallet={pallet} setPallet={setPallet} deleteUser={deleteUser} setsendIndexPallet={setsendIndexPallet} deletePallet={deletePallet}/>
 
     },
     {
@@ -134,18 +174,13 @@ function App() {
       element: <AdduserToDataBase users={users} />
     },
     {
-      path: "/addPalett",
-      element: <AddPalett users={users} setUsers={setUsers} setUsers2={setUsers2} users2={users2} sendIndexPalett={sendIndexPalett}/>
+      path: "/addPallet",
+      element: <AddPallet users={users} setUsers={setUsers} setUsers2={setUsers2} users2={users2} sendIndexPallet={sendIndexPallet}/>
     },
     {
-      path: "/getPalett",
-      element: <GetPalett/>
+      path: "/getPallet",
+      element: <GetPallet/>
     },
-    {
-      path: "/deletePalett",
-      element: <DeletePalett />
-    }
-
   ]);
 
   return (
