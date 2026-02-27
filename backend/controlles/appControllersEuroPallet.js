@@ -1,4 +1,5 @@
 const EuroPallets = require('../modules/ShemeEuroPallet');
+const EuroPallets2 = require("../modules/ShemeEuroPallet2")
 
 const EuroPallet_details = (req, res) => {
     EuroPallets.find()
@@ -21,12 +22,40 @@ const create_EuroPallet = (req, res) => {
         .catch((err) => {
             res.status(500);
             console.log(err);
+        });
+};
+
+const create_EuroPallet2 = (req, res) => {
+    const EuroPallet2 = new EuroPallets2(req.body);
+
+    EuroPallet2.save()
+        .then((result) => {
+            res.status(201).send(result)
+            console.log(req.body);
         })
+        .catch((err) => {
+            res.status(500);
+            console.log(err);
+        });
 };
 
 const delete_EuroPallet = (req, res) => {
     const id_KeyPallet = req.params.Id_KeyPallet;
     EuroPallets.findByIdAndDelete({Id_KeyPallet: id_KeyPallet})
+    .then(result => {
+        res.status(200).send(resut)
+        console.log(result);
+    })
+    .catch(err => {
+        res.status(500);
+        console.log(err);
+    });
+
+};
+
+const delete_EuroPallet2 = (req, res) => {
+    const id_KeyPallet = req.params.Id_KeyPallet;
+    EuroPallets2.findByIdAndDelete({Id_KeyPallet: id_KeyPallet})
     .then(result => {
         res.status(200).send(resut)
         console.log(result);
@@ -41,5 +70,7 @@ const delete_EuroPallet = (req, res) => {
 module.exports = {
     EuroPallet_details,
     create_EuroPallet,
+    create_EuroPallet2,
     delete_EuroPallet,
+    delete_EuroPallet2,
 };
