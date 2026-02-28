@@ -5,7 +5,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast'
 
 
-export const AddPalett = (props) => {
+export const AddPallet = (props) => {
 
   const [KeyPallet, setKeyPallet] = useState('');
   const [Quantity, setQuantity] = useState('');
@@ -198,4 +198,4 @@ export const AddPalett = (props) => {
   )
 }
 
-export default AddPalett;
+export default AddPallet;
