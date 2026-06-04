@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import AddCircleOutlineSharpIcon from '@mui/icons-material/AddCircleOutlineSharp';
 import {Button} from '@mui/material';
+import Timer from '../../Timer/Timer';
 
 const ShowUser = ({ users, setUsers, pallet, setPallet, deleteUser, setsendIndexPallet, deletePallet}) => {
 
@@ -83,6 +84,7 @@ const ShowUser = ({ users, setUsers, pallet, setPallet, deleteUser, setsendIndex
                                     <div>Nestet: {pallet.Nestet}</div>
                                     <div>Department: {pallet.Department}</div>
                                     <div>Location: {pallet.Location}</div>
+                                    <div><Timer duration = {24*60*60*1000} /></div>
                                     <button
                                         onClick={() => deletePallet(pallet.ID_number)}
                                     >Delete</button>
